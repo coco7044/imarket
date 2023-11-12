@@ -87,7 +87,6 @@
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('user.logout') }}">
                     @csrf
-
                     <x-responsive-nav-link :href="route('user.logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
