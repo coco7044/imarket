@@ -30,7 +30,7 @@
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
                 @if(auth('admin')->user())
-                    @include('profile.partials.delete-admin-form')
+                    @include('profile.partials.admin-delete-user-form')
                 @else
                     @include('profile.partials.delete-user-form')
                 @endif
