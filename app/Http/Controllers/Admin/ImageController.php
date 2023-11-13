@@ -3,16 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //ログインしているか認証確認
+    public function __construct()
+    {
+        //adminでログインしているか確認
+        $this->middleware('auth:admin');
+    }
+
+
     public function index()
     {
-        //
+        $images = Image::orderByDesc('updated_at')->paginate(20);
+        return view('admin.images.index',compact('images'));
     }
 
     /**
