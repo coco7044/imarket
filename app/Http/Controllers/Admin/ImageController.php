@@ -66,7 +66,9 @@ class ImageController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $image = Image::findOrFail($id);
+        return view('admin.images.edit', compact('image'));
+
     }
 
     /**
@@ -74,7 +76,18 @@ class ImageController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'string|max:50'
+        ]);
+
+        $image = Image::findOrFail($id);
+        $image->title = $request->title;
+        $image->save();
+
+        return redirect()
+        ->route('admin.images.index')
+        ->with(['message' => '画像情報を更新しました。',
+        'status' => 'info']);
     }
 
     /**
