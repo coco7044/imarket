@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\ImageController;
-use App\Models\Image;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,6 +31,9 @@ Route::get('/', function () {
 });
 
 Route::resource('images',ImageController::class)->middleware('auth:admin')->except('show');
+
+Route::resource('product',ProductController::class)->middleware('auth:admin')->except('show');
+
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
