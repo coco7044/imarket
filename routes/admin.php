@@ -32,7 +32,7 @@ Route::get('/', function () {
 
 Route::resource('images',ImageController::class)->middleware('auth:admin')->except('show');
 
-Route::resource('product',ProductController::class)->middleware('auth:admin')->except('show');
+Route::resource('products',ProductController::class)->middleware('auth:admin')->except('show');
 
 
 Route::get('/dashboard', function () {
