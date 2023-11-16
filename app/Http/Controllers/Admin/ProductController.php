@@ -52,9 +52,8 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
-
         try{
             DB::transaction(function () use($request) {
                 $product = Product::create([
