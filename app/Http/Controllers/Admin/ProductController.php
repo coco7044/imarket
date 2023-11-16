@@ -34,20 +34,15 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $shops = Shop::where('owner_id', Auth::id())
-        ->select('id', 'name')
-        ->get();
-
-        $images = Image::where('owner_id', Auth::id())
-        ->select('id', 'title', 'filename')
+        $images = Image::select('id', 'title', 'filename')
         ->orderBy('updated_at', 'desc')
         ->get();
 
         $categories = PrimaryCategory::with('secondary')
         ->get();
 
-        return view('owner.products.create', 
-            compact('shops', 'images', 'categories'));
+        return view('admin.products.create', 
+            compact('images', 'categories'));
         
     }
 
