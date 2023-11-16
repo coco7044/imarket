@@ -15,6 +15,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->integer('sort_order')->nullable();
             $table->foreignId('secondary_category_id')
             ->constrained();
