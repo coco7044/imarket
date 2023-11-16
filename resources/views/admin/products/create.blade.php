@@ -64,7 +64,6 @@
                         <x-select-image :images="$images" name="image2" />
                         <x-select-image :images="$images" name="image3" />
                         <x-select-image :images="$images" name="image4" />
-                        <x-select-image :images="$images" name="image5" />
                     <div class="p-2 w-1/2 mx-auto">
                         <div class="relative flex justify-around">
                             <div><input type="radio" name="is_selling" value="1" class="mr-2" checked>販売中</div>
@@ -83,20 +82,28 @@
 </div>
 <script>
     'use strict'
-    const images = document.querySelectorAll('.image')
+    const images = document.querySelectorAll('.image');
+    images.forEach(image => {
+        image.addEventListener('click', (element) => {
+            const imageName = element.target.dataset.id.substr(0, 6);
+            const imageId = element.target.dataset.id.replace(imageName + '_', '');
+            const imageFile = element.target.dataset.file;
+            const imagePath = element.target.dataset.path;
 
-    images.forEach( image =>  {
-        image.addEventListener('click', function(e){
-        const imageName = e.target.dataset.id.substr(0, 6)
-        const imageId = e.target.dataset.id.replace(imageName + '_', '')
-        const imageFile = e.target.dataset.file
-        const imagePath = e.target.dataset.path
-        const modal = e.target.dataset.modal
-        document.getElementById(imageName + '_thumbnail').src = imagePath + '/' + imageFile
-        document.getElementById(imageName + '_hidden').value = imageId
-        MicroModal.close(modal);
-    }, )
-    })  
+            document.getElementById(imageName + '_thumbnail').src = imagePath + '/' + imageFile;
+            document.getElementById(imageName + '_hidden').value = imageId;
+
+            /**
+             * MicroModal.close(modal);でモーダルを閉じるとimage4に適切な画像が配置出来なくなるのでis-openクラスを削除してモーダルを閉じる
+             * モーダルが開いている間はariaHiddenがfalseになるので閉じるタイミングでtrueに変更する
+             * モーダル表示時にbodyのoverflow属性にhiddenが設定されるので削除する
+             */
+            const openModal = document.getElementsByClassName('is-open')[0];
+            openModal.ariaHidden = true;
+            openModal.classList.remove('is-open');
+            document.getElementsByTagName('body')[0].style.overflow = '';
+        })
+    });
 </script>
 
 </x-app-layout> 
