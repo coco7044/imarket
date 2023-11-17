@@ -19,6 +19,7 @@
                         <a href="{{ route('admin.products.edit', ['product' => $product->id ])}}">  
                             <div class="border rounded-md p-2 md:p-4">
                                 <x-thumbnail filename="{{$product->imageFirst->filename ?? ''}}" type="products" />
+                                <div class="text-gray-700">{{ $product->name }}</div>
                             </div>
                         </a>
                     </div>
