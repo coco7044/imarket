@@ -52,23 +52,8 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-
-        $request->validate([
-            'name' => 'required|string|max:50',
-            'price' => 'required|integer',
-            'sort_order' => 'nullable|integer',
-            'quantity' => 'required|integer',
-            'category' => 'required|exists:secondary_categories,id',
-            'image1' => 'nullable|exists:images,id',
-            'image2' => 'nullable|exists:images,id',
-            'image3' => 'nullable|exists:images,id',
-            'image4' => 'nullable|exists:images,id',
-            'is_selling' => 'required',
-
-        ]);
-
         try{
             DB::transaction(function () use($request) {
                 $product = Product::create([
@@ -106,25 +91,21 @@ class ProductController extends Controller
         $quantity = Stock::where('product_id', $product->id)
         ->sum('quantity');
 
-        $shops = Shop::where('owner_id', Auth::id())
-        ->select('id', 'name')
-        ->get();
-
-        $images = Image::where('owner_id', Auth::id())
-        ->select('id', 'title', 'filename')
+        $images = Image::select('id', 'title', 'filename')
         ->orderBy('updated_at', 'desc')
         ->get();
 
         $categories = PrimaryCategory::with('secondary')
         ->get();
 
-        return view('owner.products.edit',
-            compact('product', 'quantity', 'shops', 
+        return view('admin.products.edit',
+            compact('product', 'quantity', 
             'images', 'categories'));
     }
 
     public function update(ProductRequest $request, $id)
     {
+        //hidden属性にたいしてバリデーションを行う
         $request->validate([
             'current_quantity' => 'required|integer',
         ]);
@@ -135,7 +116,7 @@ class ProductController extends Controller
 
         if($request->current_quantity !== $quantity){
             $id = $request->route()->parameter('product');
-            return redirect()->route('owner.products.edit', [ 'product' => $id])
+            return redirect()->route('admin.products.edit', [ 'product' => $id])
             ->with(['message' => '在庫数が変更されています。再度確認してください。',
                 'status' => 'alert']);            
 
@@ -145,10 +126,8 @@ class ProductController extends Controller
                 DB::transaction(function () use($request, $product) {
                     
                         $product->name = $request->name;
-                        $product->information = $request->information;
                         $product->price = $request->price;
                         $product->sort_order = $request->sort_order;
-                        $product->shop_id = $request->shop_id;
                         $product->secondary_category_id = $request->category;
                         $product->image1 = $request->image1;
                         $product->image2 = $request->image2;
@@ -175,7 +154,7 @@ class ProductController extends Controller
             }
     
             return redirect()
-            ->route('owner.products.index')
+            ->route('admin.products.index')
             ->with(['message' => '商品情報を更新しました。',
             'status' => 'info']);
         }
@@ -192,7 +171,7 @@ class ProductController extends Controller
         Product::findOrFail($id)->delete(); 
 
         return redirect()
-        ->route('owner.products.index')
+        ->route('admin.products.index')
         ->with(['message' => '商品を削除しました。',
         'status' => 'alert']);
     }
