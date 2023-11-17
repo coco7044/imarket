@@ -106,20 +106,15 @@ class ProductController extends Controller
         $quantity = Stock::where('product_id', $product->id)
         ->sum('quantity');
 
-        $shops = Shop::where('owner_id', Auth::id())
-        ->select('id', 'name')
-        ->get();
-
-        $images = Image::where('owner_id', Auth::id())
-        ->select('id', 'title', 'filename')
+        $images = Image::select('id', 'title', 'filename')
         ->orderBy('updated_at', 'desc')
         ->get();
 
         $categories = PrimaryCategory::with('secondary')
         ->get();
 
-        return view('owner.products.edit',
-            compact('product', 'quantity', 'shops', 
+        return view('admin.products.edit',
+            compact('product', 'quantity', 
             'images', 'categories'));
     }
 
