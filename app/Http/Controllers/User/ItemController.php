@@ -10,6 +10,24 @@ use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:users');
+
+        // $this->middleware(function ($request, $next) {
+
+        //     $id = $request->route()->parameter('item'); 
+        //     if(!is_null($id)){ 
+        //     $itemId = Product::availableItems()->where('products.id', $id)->exists();
+        //         if(!$itemId){ 
+        //             abort(404);
+        //         }
+        //     }
+        //     return $next($request);
+        // });
+    }
+
     public function index()
     {
 
@@ -33,4 +51,13 @@ class ItemController extends Controller
         ->get();
         return view('user.index',compact('products'));
     }
+
+    public function show($id)
+    {
+        $product = Product::findOrFail($id);
+
+        return view('user.show', 
+        compact('product'));
+    }
+
 }
