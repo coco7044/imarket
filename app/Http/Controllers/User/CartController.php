@@ -61,7 +61,6 @@ class CartController extends Controller
 
     public function checkout()
     {
-        
 
         $user = User::findOrFail(Auth::id());
         $products = $user->products;
@@ -75,13 +74,17 @@ class CartController extends Controller
                 return redirect()->route('user.cart.index');
             } else {
                 $lineItem = [
-                    'name' => $product->name,
-                    'description' => $product->information,
-                    'amount' => $product->price,
-                    'currency' => 'jpy',
-                    'quantity' => $product->pivot->quantity,
-                ];
-                array_push($lineItems, $lineItem);    
+                                'price_data' => [
+                                    'unit_amount' => $product->price,
+                                    'currency' => 'JPY',
+                                    'product_data' => [
+                                                        'name' => $product->name,
+                                                        'description' => $product->information,
+                                                        ],
+                                                ],
+                                    'quantity' => $product->pivot->quantity,
+                            ];
+                array_push($lineItems, $lineItem);
             }
         }
         // dd($lineItems);
@@ -112,19 +115,7 @@ class CartController extends Controller
     public function success()
     {
         ////
-        $items = Cart::where('user_id', Auth::id())->get();
-        $products = CartService::getItemsInCart($items);
-        $user = User::findOrFail(Auth::id());
-
-        SendThanksMail::dispatch($products, $user);
-        foreach($products as $product)
-        {
-            SendOrderedMail::dispatch($product, $user);
-        }
-        // dd('ユーザーメール送信テスト');
-        ////
         Cart::where('user_id', Auth::id())->delete();
-
         return redirect()->route('user.items.index');
     }
 
