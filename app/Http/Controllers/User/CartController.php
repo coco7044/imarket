@@ -96,6 +96,7 @@ class CartController extends Controller
             ]);
         }
 
+
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
         $session = \Stripe\Checkout\Session::create([
@@ -115,7 +116,16 @@ class CartController extends Controller
     public function success()
     {
         ////
+        $items = Cart::where('user_id', Auth::id())->get();
+        $products = CartService::getItemsInCart($items);
+        $user = User::findOrFail(Auth::id());
+
+        SendThanksMail::dispatch($products, $user);
+        SendOrderedMail::dispatch($products, $user);
+        // dd('ユーザーメール送信テスト');
+        ////
         Cart::where('user_id', Auth::id())->delete();
+
         return redirect()->route('user.items.index');
     }
 
