@@ -72,6 +72,27 @@
                                     <input type="hidden" name="product_id" value="{{ $product->id}}">
                                 </div>
                             </form>
+                            <div class="pt-5 border-b-4"></div>
+                            <div class="pt-5">
+                                <span class="font-bold">容量(GB)</span>
+                                <div class="pt-5 flex justify-around ">
+                                    <a href="/" class="md:w-5/12 bn3637 bn36">256GB</a>
+                                    <a href="/" class="md:w-5/12 bn3637 bn36">512GB</a>
+                                </div>
+                                <span class="font-bold">カラー</span>
+                                <div class="justify-around">
+                                    <div class="pt-5 flex justify-around">
+                                        <a href="/" class=" md:w-5/12 bn3637 bn36">
+                                            <p class="circle black"></p>
+                                            <p class="pl-2">ブラック</p>
+                                        </a>
+                                        <a href="/" class=" md:w-5/12 bn3637 bn36">
+                                            <p class="circle gold"></p>
+                                            <p class="pl-2">ゴールド</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>

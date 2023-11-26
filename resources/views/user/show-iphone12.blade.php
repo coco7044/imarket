@@ -72,6 +72,46 @@
                                     <input type="hidden" name="product_id" value="{{ $product->id}}">
                                 </div>
                             </form>
+                            <div class="pt-5 border-b-4"></div>
+                            <div class="pt-5">
+                                <span class="font-bold">容量(GB)</span>
+                                <div class="pt-5 flex justify-around ">
+                                    <a href="/" class="md:w-3/12 bn3637 bn36">64GB</a>
+                                    <a href="/" class="md:w-3/12 bn3637 bn36">124GB</a>
+                                    <a href="/" class="md:w-3/12 bn3637 bn36">256GB</a>
+                                </div>
+                                <span class="font-bold">カラー</span>
+                                <div class="justify-around">
+                                    <div class="pt-5 flex justify-around">
+                                        <a href="/" class=" md:w-3/12 bn3637 bn36">
+                                            <p class="circle black"></p>
+                                            <p class="pl-2">ブラック</p>
+                                        </a>
+                                        <a href="/" class=" md:w-3/12 bn3637 bn36">
+                                            <p class="circle blue"></p>
+                                            <p class="pl-2">ブルー</p>
+                                        </a>
+                                        <a href="/" class=" md:w-3/12 bn3637 bn36">
+                                            <p class="circle red"></p>
+                                            <p class="pl-2">レッド</p>
+                                        </a>
+                                    </div>
+                                    <div class="pt-5 flex justify-around">
+                                    <a href="/" class=" md:w-3/12 bn3637 bn36">
+                                            <p class="circle purple"></p>
+                                            <p class="pl-2">パープル</p>
+                                        </a>
+                                        <a href="/" class=" md:w-3/12 bn3637 bn36">
+                                            <p class="circle rightGreen"></p>
+                                            <p class="pl-2">グリーン</p>
+                                        </a>
+                                        <a href="/" class=" md:w-3/12 bn3637 bn36">
+                                            <p class="circle white"></p>
+                                            <p class="pl-2">ホワイト</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
