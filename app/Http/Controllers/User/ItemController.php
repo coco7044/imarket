@@ -63,7 +63,26 @@ class ItemController extends Controller
         if($quantity > 9){
             $quantity = 9;
         }
+        $category = $product->category->id;
 
-        return view('user.show', compact('product', 'quantity'));
+        if($category===1){
+            return view('user.show-iphone12', compact('product', 'quantity'));
+        }elseif($category===2){
+            return view('user.show-iphone13', compact('product', 'quantity'));
+        }elseif($category===3){
+            return view('user.show-iphone14', compact('product', 'quantity'));
+        }elseif($category===5){
+            return view('user.show-ipad-Air', compact('product', 'quantity'));
+        }elseif($category===4){
+            return view('user.show-ipad-min', compact('product', 'quantity'));
+        }elseif($category===6){
+            return view('user.show-ipad-Pro', compact('product', 'quantity'));
+        }elseif($category===7){
+            return view('user.show-mac-Air', compact('product', 'quantity'));
+        }elseif($category===8){
+            return view('user.show-mac-Pro', compact('product', 'quantity'));
+        }else{
+            return view('user.show', compact('product', 'quantity'));
+        }
     }
 }
