@@ -26,10 +26,15 @@
                         <div>
                             <span class="text-sm">表示順</span><br>
                             <select id="sort" name="sort" class="mr-4">
-                                <option value="{{ \Constant::SORT_ORDER['recommend']}}"
-                                    @if(\Request::get('sort') === \Constant::SORT_ORDER['recommend'] ) 
+                                <option value="{{ \Constant::SORT_ORDER['later']}}"
+                                    @if(\Request::get('sort') === \Constant::SORT_ORDER['later'] ) 
                                     selected 
-                                    @endif>おすすめ順
+                                    @endif>新しい順
+                                </option>
+                                <option value="{{ \Constant::SORT_ORDER['older']}}"
+                                    @if(\Request::get('sort') === \Constant::SORT_ORDER['older'] ) 
+                                    selected 
+                                    @endif>古い順
                                 </option>
                                 <option value="{{ \Constant::SORT_ORDER['higherPrice']}}" 
                                     @if(\Request::get('sort') === \Constant::SORT_ORDER['higherPrice'] ) 
@@ -40,16 +45,6 @@
                                     @if(\Request::get('sort') === \Constant::SORT_ORDER['lowerPrice'] ) 
                                     selected 
                                     @endif>料金の安い順    
-                                </option>
-                                <option value="{{ \Constant::SORT_ORDER['later']}}"
-                                    @if(\Request::get('sort') === \Constant::SORT_ORDER['later'] ) 
-                                    selected 
-                                    @endif>新しい順
-                                </option>
-                                <option value="{{ \Constant::SORT_ORDER['older']}}"
-                                    @if(\Request::get('sort') === \Constant::SORT_ORDER['older'] ) 
-                                    selected 
-                                    @endif>古い順
                                 </option>
                             </select>
                         </div>
@@ -87,7 +82,7 @@
                     @foreach($products as $product)
                     <div class="w-full lg:w-1/4 p-2 md:p-4">
                         <a href="{{ route('user.items.show', ['item' => $product->id ])}}">    
-                    <div class="border rounded-md p-2 md:p-4">
+                    <div class="box border rounded-md p-2 md:p-4">
                         <x-thumbnail filename="{{$product->filename ?? ''}}" type="products" />
                             <div class="mt-4">
                                 <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ $product->category }}</h3>
