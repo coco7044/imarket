@@ -68,7 +68,7 @@ img {
 }
 /*ホバー時の指定*/
 .box:hover{
-    box-shadow:0px 0px 10px #ccc;
+    box-shadow:0px 0px 10px #8f8f8f;
     transition: all 0.5s;
 }
 

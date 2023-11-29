@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\SecondaryCategory;
+use App\Models\PrimaryCategory;
 use App\Models\Image;
 use App\Models\Stock;
 use App\Models\User;
@@ -73,11 +74,11 @@ class Product extends Model
         ->having('quantity', '>', 1);
     }
 
-    public function scopePrimaryAvailableItems($query,$primary_categoryId)
+    public function scopePrimaryAvailableItems($query,$categoryName)
     {
         $stocks = $this->getStocks();
-        $items = DB::table('secondary_categories')
-        ->where('primary_category_id', '=', $primary_categoryId);
+        $primaryId = PrimaryCategory::where('name', '=', $categoryName)->first()->id;
+        $items = SecondaryCategory::where('primary_category_id',$primaryId);
 
         return 
         $query->joinSub($stocks, 'stock', function($join){

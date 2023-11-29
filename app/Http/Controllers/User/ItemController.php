@@ -50,14 +50,13 @@ class ItemController extends Controller
 
         $categories = PrimaryCategory::with('secondary')->get();
 
-        //topからprimary_categoryありでアクセスされたときの動作
-        if( !is_null($request->input('primary_category')) ){
-            $primary_categoryId = $request->input('primary_category');
-            $products = Product::primaryAvailableItems($primary_categoryId)
-            ->selectCategory($request->category ?? '0')
+        //topからcategoryにprimaryCategoryありでアクセスされたときの動作
+        if( in_array($request->input('category'),['iPhone','iPad','MacBook','AppleWatch','AirPods & イヤホン']) ){
+            $categoryName = $request->input('category');
+            $products = Product::primaryAvailableItems($categoryName)
             ->searchKeyword($request->keyword)
             ->sortOrder($request->sort)
-            ->paginate($request->pagination ?? '20');    
+            ->paginate($request->pagination ?? '20');
         }else{
             $products = Product::availableItems()
             ->selectCategory($request->category ?? '0')

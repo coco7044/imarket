@@ -1,11 +1,3 @@
-@php
-    if( \Request::get('category') !== null ){
-        $primary_categoryId ='';
-    }else{
-        $primary_categoryId = \Request::get('primary_category');
-    }
-@endphp
-
 
 <x-app-layout>
     <x-slot name="header">
@@ -13,14 +5,15 @@
                 商品一覧
             </h2>
                 <form method="get" action = "{{ route('user.items.index')}}">
-                <input type ="hidden" name="primary_category" value= {{ $primary_categoryId }} >
                     <div class="lg:flex lg:justify-around">
                         <div class="lg:flex items-center">
                             <select name="category" class="mb-2 lg:mb-0 lg:mr-2">
-                                <option value=""  @if(\Request::get('category') === '') selected @endif>選択</option>
                                 <option value="0" @if(\Request::get('category') === '0') selected @endif>全て</option>
                                 @foreach($categories as $category)
                                 <optgroup label="{{ $category->name }}">
+                                <option value="{{ $category->name }}" @if(\Request::get('category') == $category->name) selected @endif >
+                                    {{ $category->name }}全て
+                                </option>
                                     @foreach($category->secondary as $secondary)
                                         <option value="{{ $secondary->id}}" @if(\Request::get('category') == $secondary->id) selected @endif >
                                             {{ $secondary->name }}
@@ -107,7 +100,7 @@
                         
                         </div>
                     {{ $products->appends([
-                        'primary_category' => \Request::get('primary_category'),
+                        'category' => \Request::get('category'),
                         'sort' => \Request::get('sort'),
                         'pagination' => \Request::get('pagination')
                     ])->links() }}

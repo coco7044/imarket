@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('user.items.top')" :active="request()->routeIs('user.items.top')">
-                        {{ __('ホーム') }}
+                        {{ __('TOP') }}
                     </x-nav-link>
                     <x-nav-link :href="route('user.cart.index')" :active="request()->routeIs('user.cart.index')">
                         カートを表示

@@ -10,7 +10,7 @@
             <div class="lg:w-2/3 mx-auto">
                 <div class="flex flex-wrap -mx-2">
                     <div class="px-2  w-1/2">
-                    <a href="{{ route('user.items.index', ['primary_category' => 1 ,'category' => '' ,'sort' => \Constant::SORT_ORDER['later']])}}">
+                    <a href="{{ route('user.items.index', ['category' =>'iPhone' ,'sort' => \Constant::SORT_ORDER['later']])}}">
                         <div class=" box rounded-lg bg-white flex flex-wrap w-full sm:py-24 py-16 sm:px-10 px-6 relative">
                                 <img src="{{ asset('images/top-iphone.png')}}">
                                 <div class="text-center relative z-10 w-full">
@@ -21,7 +21,7 @@
                     </a>
                     </div>
                     <div class="px-2 w-1/2">
-                    <a href="{{ route('user.items.index', ['primary_category' => 2 ,'category' => '' ,'sort' => \Constant::SORT_ORDER['later']])}}">
+                    <a href="{{ route('user.items.index', ['category' => 'iPad' ,'sort' => \Constant::SORT_ORDER['later']])}}">
                         <div class=" box rounded-lg bg-white flex flex-wrap w-full sm:py-24 py-16 sm:px-10 px-6 relative">
                         <img src="{{ asset('images/top-ipad.png')}}">
                             <div class="text-center relative z-10 w-full">
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="px-2 py-4 w-1/3">
-                    <a href="{{ route('user.items.index', ['primary_category' => 3 ,'category' => '' ,'sort' => \Constant::SORT_ORDER['later']])}}">
+                    <a href="{{ route('user.items.index', ['category' => 'MacBook' ,'sort' => \Constant::SORT_ORDER['later']])}}">
                         <div class="flex rounded-lg flex-wrap w-full box bg-white sm:py-24 py-16 sm:px-10 px-6 relative">
                         <img src="{{ asset('images/top-mac.png')}}">
                             <div class="text-center relative z-10 w-full">
@@ -42,7 +42,7 @@
                     </a>
                     </div>
                     <div class="px-2 py-4 w-1/3">
-                    <a href="{{ route('user.items.index', ['primary_category' => 4 ,'category' => '' ,'sort' => \Constant::SORT_ORDER['later']])}}">
+                    <a href="{{ route('user.items.index', ['category' => 'AppleWatch' ,'sort' => \Constant::SORT_ORDER['later']])}}">
                         <div class="flex rounded-lg flex-wrap w-full box bg-white sm:py-24 py-16 sm:px-10 px-6 relative">
                         <img src="{{ asset('images/top-watch.png')}}">
                             <div class="text-center relative z-10 w-full">
@@ -53,7 +53,7 @@
                     </a>
                     </div>
                     <div class="px-2 py-4 w-1/3">
-                        <a href="{{ route('user.items.index', ['primary_category' => 5 ,'category' => '' ,'sort' => \Constant::SORT_ORDER['later']])}}">
+                        <a href="{{ route('user.items.index', ['category' => 'AirPods & イヤホン' ,'sort' => \Constant::SORT_ORDER['later']])}}">
                             <div class="flex rounded-lg flex-wrap w-full box bg-white sm:py-24 py-16 sm:px-10 px-6 relative">
                             <img src="{{ asset('images/top-pods.png')}}">
                                 <div class="text-center relative z-10 w-full">
