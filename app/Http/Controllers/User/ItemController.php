@@ -32,6 +32,12 @@ class ItemController extends Controller
         });
     }
 
+    public function top()
+    {
+        return view('user.top');
+    }
+
+
     public function index(Request $request)
     {
 
@@ -42,14 +48,22 @@ class ItemController extends Controller
         // // 非同期に送信
         // SendThanksMail::dispatch();
 
-        $categories = PrimaryCategory::with('secondary')
-        ->get();
+        $categories = PrimaryCategory::with('secondary')->get();
 
-        $products = Product::availableItems()
-        ->selectCategory($request->category ?? '0')
-        ->searchKeyword($request->keyword)
-        ->sortOrder($request->sort)
-        ->paginate($request->pagination ?? '20');
+        //topからcategoryにprimaryCategoryありでアクセスされたときの動作
+        if( in_array($request->input('category'),['iPhone','iPad','MacBook','AppleWatch','AirPods & イヤホン']) ){
+            $categoryName = $request->input('category');
+            $products = Product::primaryAvailableItems($categoryName)
+            ->searchKeyword($request->keyword)
+            ->sortOrder($request->sort)
+            ->paginate($request->pagination ?? '20');
+        }else{
+            $products = Product::availableItems()
+            ->selectCategory($request->category ?? '0')
+            ->searchKeyword($request->keyword)
+            ->sortOrder($request->sort)
+            ->paginate($request->pagination ?? '20');
+        }
 
         return view('user.index', compact('products','categories'));
     }
