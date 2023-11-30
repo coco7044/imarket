@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\PriceSearchController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,9 +32,8 @@ Route::get('/', function () {
 });
 
 Route::resource('images',ImageController::class)->middleware('auth:admin')->except('show');
-
 Route::resource('products',ProductController::class)->middleware('auth:admin')->except('show');
-
+Route::resource('priceSearch',PriceSearchController::class)->middleware('auth:admin')->except('show');
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
