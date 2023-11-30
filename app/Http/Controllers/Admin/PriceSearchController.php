@@ -25,7 +25,7 @@ class PriceSearchController extends Controller
         $categories = PrimaryCategory::with('secondary')
         ->get();
 
-        return view('admin.search.index',compact('categories'));
+        return view('admin.search.create',compact('categories'));
 
 
     }
