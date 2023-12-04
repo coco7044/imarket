@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin.welcome');
+    return view('admin.auth.login');
 });
 
 Route::resource('images',ImageController::class)->middleware('auth:admin')->except('show');

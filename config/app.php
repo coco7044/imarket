@@ -160,7 +160,6 @@ return [
          * Package Service Providers...
          */
         Intervention\Image\ImageServiceProvider::class,
-        Weidner\Goutte\GoutteServiceProvider::class, 
 
         /*
          * Application Service Providers...
@@ -187,7 +186,6 @@ return [
         // 'Example' => App\Facades\Example::class,
         'InterventionImage'=> Intervention\Image\Facades\Image::class,
         'Constant'=> App\Constants\Common::class,
-        'Goutte' => Weidner\Goutte\GoutteFacade::class,
     ])->toArray(),
 
 ];

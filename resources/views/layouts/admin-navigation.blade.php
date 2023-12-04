@@ -24,7 +24,7 @@
                     <x-nav-link>
                         購入者履歴
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.priceSearch.index')" :active="request()->routeIs('admin.priceSearch.index')">
+                    <x-nav-link :href="route('admin.priceSearch.create')" :active="request()->routeIs('admin.priceSearch.create')">
                         商品価格調査
                     </x-nav-link>
 
