@@ -247,7 +247,10 @@ return [
         'updated_at' => '更新日',
         'username' => 'ユーザー名',
         'year' => '年',
-        'quantity'=>'数量'
+        'quantity'=>'数量',
+        'tel'=>'電話番号',
+        'kana'=>'フリガナ',
+        'postcode'=>'郵便番号',
     ],
 
 ];

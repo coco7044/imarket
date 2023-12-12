@@ -41,10 +41,13 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        <x-dropdown-link :href="route('user.profileInfo.index')">
+                            会員情報
+                        </x-dropdown-link>
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('user.logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('user.logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
@@ -88,6 +91,10 @@
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('user.profile.edit')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('user.profileInfo.index')">
+                    会員情報
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

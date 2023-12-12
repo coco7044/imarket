@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\User;
 use App\Models\Stock;
 use Illuminate\Support\Facades\Auth;
+use App\Models\UserProfileInfo;
 use App\Services\CartService;
 use App\Jobs\SendThanksMail;
 use App\Jobs\SendOrderedMail;
@@ -132,5 +133,17 @@ class CartController extends Controller
         }
 
         return redirect()->route('user.cart.index');
+    }
+
+    public function checkoutInfo(){
+        $user = User::findOrFail(Auth::id());
+        $userId = $user->id;
+        $userInfoExe = UserProfileInfo::where('user_id',$userId)->exists();
+        if( $userInfoExe ){
+            $user_info = UserProfileInfo::where('user_id',$userId)->first();
+        }else{
+            $user_info = null;
+        }
+        return view('user.checkoutInfo',compact('user_info'));
     }
 }

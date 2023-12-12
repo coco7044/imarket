@@ -11,7 +11,7 @@ use GuzzleHttp\Client;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
-use app\Console\Commands\PythonTestCommand;
+use app\Console\Commands\BackMarketCommand;
 use Artisan;
 
 
@@ -43,51 +43,55 @@ class PriceSearchController extends Controller
         });
     }
 
-    //BackMarketのiphone12系の商品データURLの取得とDBへの保存
-    private function saveBackIphone12SaveUrls(){
 
-        Artisan::call('python:test');
-        $f = fopen(__DIR__.'/../../../../public/search/search.csv',"r");
-        while ($line = fgetcsv($f)) {
-            print_r($line);
-        }
-        fclose($f);
+    //スクレイピングの不十分なコード
+    // //BackMarketのiphone12系の商品データURLの取得とDBへの保存
+    // private function saveBackIphone12SaveUrls(){
 
+    //     Artisan::call('python:backMarket');
 
-        // $path = app_path() . "/Python/test.py";
-        // $command = "python " . $path;
-        // exec($command,$output);
-        // dd($output);
+    //     $f = fopen(__DIR__.'/../../../../public/search/market_urls.csv',"r");
+    //     while ($line = fgetcsv($f)) {
+    //         print_r($line);
+    //     }
+    //     fclose($f);
 
 
-        // $client = new \GuzzleHttp\Client();
-        // $response = $client->request('GET', 'https://www.backmarket.co.jp/ja-jp/l/iphone-12shirizu/7b2e102d-e84d-478f-adaa-a42fd39731ae#backbox_grade=10%20A%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89&model=001%20iPhone%2012&storage=64000%2064%20GB');
-        // $crawler = new Crawler($response->getBody()->getContents());
-        // sleep(5);
-        // $urls = $crawler->filter('.productCard > a')->each(function($node){
-        //     dump( [
-        //         'url' => $node->attr('href'),
-        //         'created_at' => Carbon::now(),
-        //         'updated_at' => Carbon::now(),
-        //     ]);
-        // });
-        // DB::table('back_market_urls')->insert($urls);
-    }
+    //     // $path = app_path() . "/Python/test.py";
+    //     // $command = "python " . $path;
+    //     // exec($command,$output);
+    //     // dd($output);
 
-    //DBのトランケート
-    private function truncateTables()
-    {
-        DB::table('back_market_urls')->truncate();
-    }
 
-    //検索ボタンによって実行される処理
-    public function store(Request $request)
-    {
-        // $this->checkBackItemCount();
-        // $this->truncateTables();
-        $this->saveBackIphone12SaveUrls();
-        return view('admin.search.index');
-    }
+    //     // $client = new \GuzzleHttp\Client();
+    //     // $response = $client->request('GET', 'https://www.backmarket.co.jp/ja-jp/l/iphone-12shirizu/7b2e102d-e84d-478f-adaa-a42fd39731ae#backbox_grade=10%20A%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89&model=001%20iPhone%2012&storage=64000%2064%20GB');
+    //     // $crawler = new Crawler($response->getBody()->getContents());
+    //     // sleep(5);
+    //     // $urls = $crawler->filter('.productCard > a')->each(function($node){
+    //     //     dump( [
+    //     //         'url' => $node->attr('href'),
+    //     //         'created_at' => Carbon::now(),
+    //     //         'updated_at' => Carbon::now(),
+    //     //     ]);
+    //     // });
+    //     // DB::table('back_market_urls')->insert($urls);
+    // }
+
+    // //DBのトランケート
+    // private function truncateTables()
+    // {
+    //     DB::table('back_market_urls')->truncate();
+    // }
+
+    // //検索ボタンによって実行される処理
+    // public function store(Request $request)
+    // {
+
+    //     // $this->checkBackItemCount();
+    //     // $this->truncateTables();
+    //     $this->saveBackIphone12SaveUrls();
+    //     return view('admin.search.index');
+    // }
 
     /**
      * Display the specified resource.
