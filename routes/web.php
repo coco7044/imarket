@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\PurchaseController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ItemController;
@@ -21,6 +22,13 @@ use App\Http\Controllers\User\ProfileInfoController;
 
 Route::get('/', function () {
     return view('user.welcome');
+});
+
+Route::middleware('auth:users')->group(function(){
+    Route::get('/purchase', [PurchaseController::class, 'index'])->name('purchase.index');
+    Route::get('cancel/{purchase_id}', [PurchaseController::class, 'cancel'])->name('purchase.cancel');
+    Route::get('edit/{purchase_id}', [PurchaseController::class, 'edit'])->name('purchase.edit');
+
 });
 
 Route::middleware('auth:users')->group(function(){
