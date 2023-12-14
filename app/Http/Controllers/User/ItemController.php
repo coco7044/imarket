@@ -41,11 +41,11 @@ class ItemController extends Controller
     public function index(Request $request)
     {
 
-        // 同期的に送信
+        // // 同期的に送信
         // Mail::to('test@example.com')
         // ->send(new TestMail());
 
-        // 非同期に送信
+        // // 非同期に送信
         // SendThanksMail::dispatch();
 
         $categories = PrimaryCategory::with('secondary')->get();
