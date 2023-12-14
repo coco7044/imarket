@@ -173,15 +173,8 @@ class CartController extends Controller
 
     public function checkoutInfo(){
 
-        $user = User::findOrFail(Auth::id());
-        $userId = $user->id;
-        $userInfoExe = UserProfileInfo::where('user_id',$userId)->exists();
-        if( $userInfoExe ){
-            $user_info = UserProfileInfo::where('user_id',$userId)->first();
-        }else{
-            $user_info = null;
-        }
-        return view('user.checkoutInfo',compact('user_info'));
+        $buy = 1; 
+        return redirect()->route('user.profileInfo.update',compact('buy'));
 
     }
 }
