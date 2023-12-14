@@ -8,9 +8,13 @@ use App\Models\Cart;
 use App\Models\User;
 use App\Models\Stock;
 use Illuminate\Support\Facades\Auth;
+use App\Models\UserProfileInfo;
 use App\Services\CartService;
 use App\Jobs\SendThanksMail;
 use App\Jobs\SendOrderedMail;
+use App\Models\Product;
+use App\Models\Purchase;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -115,6 +119,24 @@ class CartController extends Controller
 
     public function success()
     {
+
+        DB::beginTransaction();
+        try{
+        $carts = Cart::where('user_id', Auth::id());
+        $purchase = Purchase::create([
+            'user_id'=>Auth::id(),
+            'status'=> 0,
+        ]);
+    
+        foreach($carts->get() as $cart){
+            $purchase->products()->attach($purchase->id,[
+                'product_id' => $cart->product_id,
+                'quantity'=> $cart->quantity,
+                'purchase_product_price'=> Product::where('id','=',$cart->product_id)->select('price')->first()->price,
+            ]);
+        }
+        DB::commit();
+
         ////
         $items = Cart::where('user_id', Auth::id())->get();
         $products = CartService::getItemsInCart($items);
@@ -124,9 +146,15 @@ class CartController extends Controller
         SendOrderedMail::dispatch($products, $user);
         // dd('ユーザーメール送信テスト');
         ////
+
         Cart::where('user_id', Auth::id())->delete();
 
         return redirect()->route('user.items.index');
+
+        }catch(\Exception $e){
+            DB::rollback();
+        }
+
     }
 
     public function cancel()
@@ -142,5 +170,19 @@ class CartController extends Controller
         }
 
         return redirect()->route('user.cart.index');
+    }
+
+    public function checkoutInfo(){
+
+        $user = User::findOrFail(Auth::id());
+        $userId = $user->id;
+        $userInfoExe = UserProfileInfo::where('user_id',$userId)->exists();
+        if( $userInfoExe ){
+            $user_info = UserProfileInfo::where('user_id',$userId)->first();
+        }else{
+            $user_info = null;
+        }
+        return view('user.checkoutInfo',compact('user_info'));
+
     }
 }

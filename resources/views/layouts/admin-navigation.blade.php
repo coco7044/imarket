@@ -21,6 +21,12 @@
                     <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.index')">
                         商品管理
                     </x-nav-link>
+                    <x-nav-link>
+                        購入者履歴
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.priceSearch.create')" :active="request()->routeIs('admin.priceSearch.create')">
+                        商品価格調査
+                    </x-nav-link>
 
                 </div>
             </div>

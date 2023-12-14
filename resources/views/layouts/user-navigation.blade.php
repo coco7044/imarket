@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('user.cart.index')" :active="request()->routeIs('user.cart.index')">
                         カートを表示
                     </x-nav-link>
+                    <x-nav-link :href="route('user.purchase.index')" :active="request()->routeIs('user.purchase.index')">
+                        購入履歴
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -37,14 +40,18 @@
                     </x-slot>
 
                     <x-slot name="content">
+                    <x-dropdown-link :href="route('user.cart.index')">
+                            カート
+                        </x-dropdown-link>
                         <x-dropdown-link :href="route('user.profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
-
+                        <x-dropdown-link :href="route('user.profileInfo.index')">
+                            会員情報
+                        </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('user.logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('user.logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
@@ -69,14 +76,6 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('user.items.top')" :active="request()->routeIs('user.items.index')">
-                {{ __('ホーム') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('user.cart.index')" :active="request()->routeIs('user.cart.index')">
-                カートを表示
-            </x-responsive-nav-link>
-        </div>
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
@@ -86,8 +85,17 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <x-responsive-nav-link :href="route('user.cart.index')">
+                    カート
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('user.purchase.index')">
+                    購入履歴
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('user.profile.edit')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('user.profileInfo.index')">
+                    会員情報
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

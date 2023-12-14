@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Product;
+use App\Models\Purchase;
 
 
 class User extends Authenticatable
@@ -49,5 +50,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Product::class, 'carts')
         ->withPivot(['id', 'quantity']); 
+    }
+    
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
     }
 }

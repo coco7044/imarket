@@ -72,3 +72,21 @@ img {
     transition: all 0.5s;
 }
 
+.tags:link {
+    color: #0000EE;
+    text-decoration: underline;
+}
+
+.tags:visited {
+    color: #551A8B;
+    text-decoration: underline;
+}
+
+.tags:hover {
+    color:#0000EE;
+}
+
+.tags:active {
+    color: #FF0000;
+    text-decoration: underline;
+}

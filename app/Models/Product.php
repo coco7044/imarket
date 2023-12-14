@@ -9,6 +9,7 @@ use App\Models\PrimaryCategory;
 use App\Models\Image;
 use App\Models\Stock;
 use App\Models\User;
+use App\Models\Purchase;
 use Illuminate\Support\Facades\DB;
 
 class Product extends Model
@@ -27,6 +28,11 @@ class Product extends Model
         'image4',
     ];
 
+    public function purchases()
+    {
+        return $this->belongsToMany(Purchase::class)
+        ->withPivot('quantity');
+    }
 
     public function category()
     {

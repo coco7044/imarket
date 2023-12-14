@@ -17,7 +17,7 @@
                 @foreach ($images as $image )
                     <div class="w-1/4 p-2 md:p-4">
                     <a href="{{ route('admin.images.edit', ['image' => $image->id ])}}">  
-                    <div class="border rounded-md p-2 md:p-4">
+                    <div class="box border rounded-md p-2 md:p-4">
                       <x-thumbnail :filename="$image->filename" type="products" />
                       <div class="text-gray-700">{{ $image->title }}</div>
                     </div>
