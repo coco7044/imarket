@@ -100,8 +100,13 @@ class ProfileInfoController extends Controller
                 'gender' => $request->gender,
             ]);
         }
-        
-        return Redirect::route('user.profileInfo.index');
+        if( $request->buy === "0"){
+
+            return Redirect::route('user.profileInfo.index')
+            ->with('message','会員情報を更新しました。');
+        }else{
+            return Redirect::route('user.cart.checkout');
+        }
     }
 
     /**

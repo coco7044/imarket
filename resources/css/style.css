@@ -90,3 +90,18 @@ img {
     color: #FF0000;
     text-decoration: underline;
 }
+.fadeIn{
+    animation-name:fadeInAnime;
+    animation-duration:1.5s;
+    animation-fill-mode:forwards;
+    opacity:0;
+}
+@keyframes fadeInAnime{
+    from {
+    opacity: 0;
+    }
+
+    to {
+    opacity: 1;
+    }
+}

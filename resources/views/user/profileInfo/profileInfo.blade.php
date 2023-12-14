@@ -1,13 +1,19 @@
 <x-app-layout>
     <x-slot name="header">
     <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            会員情報
-        </h2>
+        @if(\Request::get('buy') == 1)
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                発送先情報
+            </h2>
+        @else
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                会員情報
+            </h2>
+        @endif
     </x-slot>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div  class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <section class="text-gray-600 body-font relative">
@@ -20,9 +26,16 @@
                                 </ul>
                             </div>
                         @endif
+                        <x-flash-message status="profileInfo" />
+                        @if(\Request::get('buy') == 1)
+                            <h2 class="flex justify-center font-semibold text-xl text-gray-800 leading-tight">
+                                発送先情報
+                            </h2>
+                        @else
                             <h2 class="flex justify-center font-semibold text-xl text-gray-800 leading-tight">
                                 会員情報
                             </h2>
+                        @endif
                             <form method="post" action="{{ route('user.profileInfo.update') }}" class="h-adr mt-6 space-y-6">
                             <span class="p-country-name" style="display:none;">Japan</span>                      
                                 @csrf
@@ -71,9 +84,17 @@
                                                         <label for="gender2" class="ml-2 mr-4">その他</label>
                                                     </div>
                                                 </div>
+                                                @if(\Request::get('buy') == 1)
                                                 <div class="p-2 w-full">
-                                                    <button type="submit" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">更新</button>
+                                                    <input type="hidden" id="buy" name="buy" value="1">
+                                                    <button type="submit" class="flex mx-auto box text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">購入する</button>
                                                 </div>
+                                                @else
+                                                <div class="p-2 w-full">
+                                                    <input type="hidden" id="buy" name="buy" value="0">
+                                                    <button type="submit" class="flex mx-auto box text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">更新</button>
+                                                </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

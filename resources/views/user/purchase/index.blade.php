@@ -8,18 +8,22 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <x-flash-message status="purchaseCancel" />
+                <h2 class="mt-10 mb-10 flex justify-center font-semibold text-xl text-gray-800 leading-tight">
+                    購入履歴一覧
+                </h2>
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if (count($histories) > 0)
                         @foreach ($histories as $history )
                         <div class="border-b-2 md:flex md:justify-around md:items-center mb-2">
-                            <div class="md:w-3/12">
+                            <div class="md:w-1/12">
                                 @if ($history->filename !== null)
                                     <img src="{{ asset('storage/products/' . $history->filename )}}">
                                 @else
                                     <img src="">
                                 @endif
                             </div>
-                            <div>
+                            <div class="md:w-3/12">
                                 <a class="tags" href="{{ route('user.items.show',['item' => $history->id]) }}">{{ $history->name }}</a>
                             </div>
                             <div>
