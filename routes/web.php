@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ItemController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\ProfileInfoController;
-
+use App\Http\Controllers\User\ThanksController;
 
 
 /*

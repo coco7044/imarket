@@ -122,35 +122,34 @@ class CartController extends Controller
 
         DB::beginTransaction();
         try{
-        $carts = Cart::where('user_id', Auth::id());
-        $purchase = Purchase::create([
-            'user_id'=>Auth::id(),
-            'status'=> 0,
-        ]);
-    
-        foreach($carts->get() as $cart){
-            $purchase->products()->attach($purchase->id,[
-                'product_id' => $cart->product_id,
-                'quantity'=> $cart->quantity,
-                'purchase_product_price'=> Product::where('id','=',$cart->product_id)->select('price')->first()->price,
+            $carts = Cart::where('user_id', Auth::id());
+            $purchase = Purchase::create([
+                'user_id'=>Auth::id(),
+                'status'=> 0,
             ]);
-        }
-        DB::commit();
+        
+            foreach($carts->get() as $cart){
+                $purchase->products()->attach($purchase->id,[
+                    'product_id' => $cart->product_id,
+                    'quantity'=> $cart->quantity,
+                    'purchase_product_price'=> Product::where('id','=',$cart->product_id)->select('price')->first()->price,
+                ]);
+            }
+                    ////メール送信処理
+            $items = Cart::where('user_id', Auth::id())->get();
+            $products = CartService::getItemsInCart($items);
+            $user = User::findOrFail(Auth::id());
 
-        ////
-        $items = Cart::where('user_id', Auth::id())->get();
-        $products = CartService::getItemsInCart($items);
-        $user = User::findOrFail(Auth::id());
+            SendThanksMail::dispatch($products, $user);
+            SendOrderedMail::dispatch($products, $user);
+            // dd('ユーザーメール送信テスト');
+            ////
 
-        SendThanksMail::dispatch($products, $user);
-        SendOrderedMail::dispatch($products, $user);
-        // dd('ユーザーメール送信テスト');
-        ////
+            Cart::where('user_id', Auth::id())->delete();
 
-        Cart::where('user_id', Auth::id())->delete();
+            DB::commit();
 
-        return redirect()->route('user.items.index');
-
+            return view('user.thanks.index');
         }catch(\Exception $e){
             DB::rollback();
         }
