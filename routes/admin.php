@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PriceSearchController;
+use App\Http\Controllers\Admin\AdminPurchaseController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -34,6 +35,13 @@ Route::get('/', function () {
 Route::resource('images',ImageController::class)->middleware('auth:admin')->except('show');
 Route::resource('products',ProductController::class)->middleware('auth:admin')->except('show');
 Route::resource('priceSearch',PriceSearchController::class)->middleware('auth:admin')->except('show');
+
+Route::resource('purchase',AdminPurchaseController::class)->middleware('auth:admin');
+Route::middleware('auth:admin')->group(function(){
+    Route::get('purchase/cancel/{purchase_id}', [AdminPurchaseController::class, 'cancel'])->name('adminPurchase.cancel');
+    Route::get('purchase/edit/{purchase_id}', [AdminPurchaseController::class, 'edit'])->name('adminPurchase.edit');
+});
+
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
