@@ -8,28 +8,30 @@ use App\Http\Controllers\Controller;
 use App\Models\Purchase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-
-
+use Illuminate\Support\Facades\Redis;
 
 class AdminPurchaseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        $purchases = DB::table('purchases')
-        ->join('product_purchase','purchases.id','=','product_purchase.purchase_id')
+        $purchases = Purchase::join('product_purchase','purchases.id','=','product_purchase.purchase_id')
         ->join('users','purchases.user_id','=','users.id')
         ->join('user_profile_infos','users.id','=','user_profile_infos.user_id')
         ->groupBy('purchases.id','user_profile_infos.kana','purchases.status','purchases.created_at','user_profile_infos.tel')
         ->select('purchases.id','user_profile_infos.kana','purchases.status','purchases.created_at','user_profile_infos.tel')
         ->selectRaw('sum(product_purchase.purchase_product_price) as total')
-        ->orderBy('purchases.created_at','desc')
-        ->paginate(10);
+        ->orderBy('purchases.created_at','desc');
 
-        // dd($purchase);
+        $purchases = $purchases->where('user_profile_infos.kana','like','%'.$request->keyword.'%')
+        ->orWhere('purchases.id','like','%'.$request->keyword.'%')
+        ->orWhere('user_profile_infos.tel','like','%'.$request->keyword.'%')->paginate(10);
+
+        // dd($purchases);
+
         return view('admin.purchase.index',compact('purchases'));
     }
 
