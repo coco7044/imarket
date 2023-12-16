@@ -5,11 +5,11 @@
             </h2>
     </x-slot>
 
-    <section class="text-gray-600 body-font">
+    <section class="fadeIn text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto flex flex-wrap">
             <div class="lg:w-2/3 mx-auto">
                 <div class="flex flex-wrap -mx-2">
-                    <div class="px-2  w-1/2">
+                    <div class="fadeIn px-2  w-1/2">
                     <a href="{{ route('user.items.index', ['category' =>'iPhone' ,'sort' => \Constant::SORT_ORDER['later']])}}">
                         <div class=" box rounded-lg bg-white flex flex-wrap w-full sm:py-24 py-16 sm:px-10 px-6 relative">
                                 <img src="{{ asset('images/top-iphone.png')}}">
@@ -20,7 +20,7 @@
                         </div>
                     </a>
                     </div>
-                    <div class="px-2 w-1/2">
+                    <div class="fadeIn px-2 w-1/2">
                     <a href="{{ route('user.items.index', ['category' => 'iPad' ,'sort' => \Constant::SORT_ORDER['later']])}}">
                         <div class=" box rounded-lg bg-white flex flex-wrap w-full sm:py-24 py-16 sm:px-10 px-6 relative">
                         <img src="{{ asset('images/top-ipad.png')}}">
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="px-2 py-4 w-1/3">
+                    <div class="fadeIn px-2 py-4 w-1/3">
                     <a href="{{ route('user.items.index', ['category' => 'MacBook' ,'sort' => \Constant::SORT_ORDER['later']])}}">
                         <div class="flex rounded-lg flex-wrap w-full box bg-white sm:py-24 py-16 sm:px-10 px-6 relative">
                         <img src="{{ asset('images/top-mac.png')}}">
@@ -41,7 +41,7 @@
                         </div>
                     </a>
                     </div>
-                    <div class="px-2 py-4 w-1/3">
+                    <div class="fadeIn px-2 py-4 w-1/3">
                     <a href="{{ route('user.items.index', ['category' => 'AppleWatch' ,'sort' => \Constant::SORT_ORDER['later']])}}">
                         <div class="flex rounded-lg flex-wrap w-full box bg-white sm:py-24 py-16 sm:px-10 px-6 relative">
                         <img src="{{ asset('images/top-watch.png')}}">
@@ -52,7 +52,7 @@
                         </div>
                     </a>
                     </div>
-                    <div class="px-2 py-4 w-1/3">
+                    <div class="fadeIn px-2 py-4 w-1/3">
                         <a href="{{ route('user.items.index', ['category' => 'AirPods & イヤホン' ,'sort' => \Constant::SORT_ORDER['later']])}}">
                             <div class="flex rounded-lg flex-wrap w-full box bg-white sm:py-24 py-16 sm:px-10 px-6 relative">
                             <img src="{{ asset('images/top-pods.png')}}">

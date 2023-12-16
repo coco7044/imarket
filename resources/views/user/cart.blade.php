@@ -5,14 +5,14 @@
     </h2>
 </x-slot>
 
-    <div class="py-12">
+    <div class=" fadeIn py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if (count($products) > 0)
                         @foreach ($products as $product )
                         <div class="border-b-2 md:flex md:justify-around md:items-center mb-2">
-                            <div class="md:w-1/12">
+                            <div class="fadeIn md:w-1/12">
                                 @if ($product->imageFirst->filename !== null)
                                 <img src="{{ asset('storage/products/' . $product->imageFirst->filename )}}">
                                 @else

@@ -19,7 +19,7 @@
                                 @endif
                             </div>
                             <div>
-                                <a class="tags" href="{{ route('user.items.show',['item' => $history->id]) }}">{{ $history->name }}</a>
+                                <div>{{ $history->name }}</div>
                             </div>
                             <div>
                                 <div>数量：{{ $history->quantity }}個</div>

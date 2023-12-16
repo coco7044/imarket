@@ -15,11 +15,11 @@
 
             </main>
             <footer class="modal__footer">
-                <button type="button" onclick="location.href='{{ route('user.purchase.edit',['purchase_id' => $history->pid])}}'" class="modal__btn bg-indigo-300 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-400 rounded">確定</button>
+                <button type="button" onclick="location.href='{{ route('admin.adminPurchase.edit',['purchase_id' => $history->pid])}}'" class="modal__btn bg-indigo-300 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-400 rounded">確定</button>
                 <button type="button" class="modal__btn" data-micromodal-close aria-label="Close this dialog window">閉じる</button>
             </footer>
         </div>
     </div>
 </div>
 
-<a data-micromodal-trigger="modal-1" href='javascript:;' class="box bg-slate-300 border-0 py-2 px-8 focus:outline-none hover:bg-gray-400 rounded text-lg">キャンセルする</a>
+<a data-micromodal-trigger="modal-1" href='javascript:;' class=" inline-block rounded bg-red-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none active:bg-red-500">キャンセルする</a>
