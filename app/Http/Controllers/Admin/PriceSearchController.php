@@ -48,7 +48,6 @@ class PriceSearchController extends Controller
     // //BackMarketのiphone12系の商品データURLの取得とDBへの保存
     // private function saveBackIphone12SaveUrls(){
 
-    //     Artisan::call('python:backMarket');
 
     //     $f = fopen(__DIR__.'/../../../../public/search/market_urls.csv',"r");
     //     while ($line = fgetcsv($f)) {
@@ -83,15 +82,13 @@ class PriceSearchController extends Controller
     //     DB::table('back_market_urls')->truncate();
     // }
 
-    // //検索ボタンによって実行される処理
-    // public function store(Request $request)
-    // {
+    //検索ボタンによって実行される処理
+    public function store(Request $request)
+    {
 
-    //     // $this->checkBackItemCount();
-    //     // $this->truncateTables();
-    //     $this->saveBackIphone12SaveUrls();
-    //     return view('admin.search.index');
-    // }
+        Artisan::call('python:test');
+        return view('admin.search.index');
+    }
 
     /**
      * Display the specified resource.
