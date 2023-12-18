@@ -24,20 +24,6 @@ const SORT_ORDER = [
     'older' => self::ORDER_OLDER
 ];
 
-const NICOSUMA_URL = [
-    'iphone12_64GB' => 'https://www.nicosuma.com/iphone?models=iphone-se%2Ciphone-12&storages=64gb&sort=price-desc',
-    'iphone12_128GB' => 'https://www.nicosuma.com/iphone?models=iphone-se%2Ciphone-12&storages=128gb&sort=price-desc',
-    'iphone12_256GB' => 'https://www.nicosuma.com/iphone?models=iphone-se%2Ciphone-12&storages=256gb&sort=price-desc',
-];
-const GEO_URL = [
-    'iphone12_64GB' => 'https://ec.geo-online.co.jp/shop/goods/search.aspx?sort=spd&search.x=0&capacity=64GB&tree=10016501',
-    'iphone12_128GB' => '',
-    'iphone12_256GB' => '',
-];
-const BACKMARKET_URL = [
-    'iphone12' => 'https://www.backmarket.co.jp/ja-jp/l/iphone-12/d592825d-a581-4b8b-af49-7b30356ef7f5',
-];
-
 
 
 }

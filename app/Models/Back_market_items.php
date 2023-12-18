@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BackMarket_url extends Model
+class Back_market_items extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'url',
+        'title',
+        'price',
+        'color',
+        'grade',
     ];
 }

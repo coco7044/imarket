@@ -11,7 +11,7 @@ class backMarketIphone12 extends Command
      *
      * @var string
      */
-    protected $signature = 'backMarket:iphone {name}';
+    protected $signature = 'backMarket:iphone {model}';
 
     /**
      * The console command description.
@@ -25,6 +25,11 @@ class backMarketIphone12 extends Command
      */
     public function handle()
     {
-        $name = $this->argument('name');
+        $model = $this->argument('model');
+            $path = __DIR__.'\..\..\Python\BackMarket\\'.$model.'.py';
+            $command = "python " . $path;
+            exec('export LANG=ja_JP.UTF-8');
+            exec($command,$output);
+            return $output;
     }
 }
