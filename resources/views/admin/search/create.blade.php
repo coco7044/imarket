@@ -13,58 +13,125 @@
             <form method="post" action="{{ route('admin.priceSearch.store')}}" >
                 @csrf
                 <div class="p-2 w-1/2 mx-auto">
-                    <label for="category" class="leading-7 text-x text-gray-600">検索サイト</label>
+                    <label for="site" class="leading-7 text-x text-gray-600">検索サイト</label>
                         <div class="flex pt-4 pb-8 justify-around">
                             <div>
-                                <input id="backMarket" type="checkbox" value="backMarket" checked>
+                                <input id="backMarket" type="checkbox" name="site[]" value="backMarket" checked>
                                 <label for="backMarket">BackMarket</label>
                             </div>
-
                             <div>
-                                <input id="toggle2" type="checkbox">
-                                <label for="toggle2">Hey, me too!</label>
-                            </div>
-
-                            <div>
-                                <input id="toggle3" type="checkbox">
-                                <label for="toggle3">Toggle party!</label>
+                                <input id="toggle2" name="site[]" type="checkbox">
+                                <label for="toggle2">ゲオオンライン</label>
                             </div>
                         </div>
                     </div>
-                    <div class="p-2 w-1/2 mx-auto">
-                        <div class="pb-8 relative">
-                            <label for="category" class="leading-7 text-x text-gray-600">カテゴリー</label>
-                            <div class="pt-4">
-                                <select name="category" id="category" class=" w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                                @foreach($categories as $category)
-                                    <optgroup label="{{ $category->name }}">
-                                    @foreach($category->secondary as $secondary)
-                                    <option value="{{ $secondary->id}}" >
-                                        {{ $secondary->name }}
-                                    </option>
-                                    @endforeach
-                                @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-2 w-1/2 pb-8 mx-auto">
-                    <label for="search" class="leading-7 text-x text-gray-600">出力形式</label>
-                        <div class="relative pt-4 flex justify-around">
-                            <div><input type="radio" name="search" value="0" class="mr-2" checked>画面表示</div>
-                            <div><input type="radio" name="search" value="1" class="mr-2" >メール送信</div>
-                            <div><input type="radio" name="search" value="2" class="mr-2" >両方</div>
-                        </div>
-                    </div>
-                    <div class="p-2 w-full flex justify-around mt-4">
-                        <button type="button" onclick="location.href='{{ route('admin.dashboard')}}'" class="box bg-gray-200 border-0 py-2 px-8 focus:outline-none hover:bg-gray-300 rounded text-lg">戻る</button>
-                        <button type="submit" class="box text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">検索</button>                        
-                    </div>
+                        <x-search-category :categories="$categories"/>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
+<script>
 
+function change() {
+
+    const iphone12 = ['iPhone 12']
+    const iphone = ['iPhone 13','iPhone 14']
+    const MacBookAir = ['MacBook Air']
+    const MacBookPro = ['MacBook Pro']
+    const iPad = ['iPad mini','iPad Air']
+    const iPadPro = ['iPad Pro']
+    const AppleWatch = ['AppleWatch 7','AppleWatch 8']
+    const AirPods = ['AirPods Pro','AirPods 3']
+
+
+    if (document.getElementById("category")) {
+        selboxValue = document.getElementById("category").value;
+        if (iphone.includes(selboxValue)) {
+            //iphoneを表示
+            document.getElementById("iPhone").style.display = "";
+            //その他を非表示
+            document.getElementById("iPhone 12").style.display = "none";
+            document.getElementById("MacBook Pro").style.display = "none";
+            document.getElementById("iPad").style.display = "none";
+            document.getElementById("AppleWatch").style.display = "none";
+            document.getElementById("AirPods").style.display = "none";
+            document.getElementById("iPad Pro").style.display = "none";
+            document.getElementById("MacBook Air").style.display = "none";
+        } else if (iphone12.includes(selboxValue)) {
+            //iphone12を表示
+            document.getElementById("iPhone 12").style.display = "";
+            //その他を非表示
+            document.getElementById("MacBook Pro").style.display = "none";
+            document.getElementById("iPhone").style.display = "none";
+            document.getElementById("iPad").style.display = "none";
+            document.getElementById("AppleWatch").style.display = "none";
+            document.getElementById("iPad Pro").style.display = "none";
+            document.getElementById("MacBook Air").style.display = "none";
+        } else if (MacBookPro.includes(selboxValue)) {
+            //MacBookを表示
+            document.getElementById("MacBook Pro").style.display = "";
+            //その他を非表示
+            document.getElementById("iPhone 12").style.display = "none";
+            document.getElementById("iPhone").style.display = "none";
+            document.getElementById("iPad").style.display = "none";
+            document.getElementById("AppleWatch").style.display = "none";
+            document.getElementById("iPad Pro").style.display = "none"
+            document.getElementById("MacBook Air").style.display = "none";
+        } else if (iPad.includes(selboxValue)) {
+            //iPadを表示
+            document.getElementById("iPad").style.display = "";
+            //その他を非表示
+            document.getElementById("iPhone 12").style.display = "none";
+            document.getElementById("iPhone").style.display = "none";
+            document.getElementById("MacBook Pro").style.display = "none";
+            document.getElementById("AppleWatch").style.display = "none";
+            document.getElementById("iPad Pro").style.display = "none";
+            document.getElementById("MacBook Air").style.display = "none";
+        } else if (AppleWatch.includes(selboxValue)) {
+            //AppleWatchを表示
+            document.getElementById("AppleWatch").style.display = "";
+            //その他を非表示
+            document.getElementById("iPhone 12").style.display = "none";
+            document.getElementById("iPhone").style.display = "none";
+            document.getElementById("MacBook Pro").style.display = "none";
+            document.getElementById("iPad").style.display = "none";
+            document.getElementById("iPad Pro").style.display = "none";
+            document.getElementById("MacBook Air").style.display = "none";
+        } else if (iPadPro.includes(selboxValue)) {
+            //iPad Proを表示
+            document.getElementById("iPad Pro").style.display = "";
+            //その他を非表示
+            document.getElementById("iPhone 12").style.display = "none";
+            document.getElementById("iPhone").style.display = "none";
+            document.getElementById("MacBook Pro").style.display = "none";
+            document.getElementById("iPad").style.display = "none";
+            document.getElementById("AppleWatch").style.display = "none";
+            document.getElementById("MacBook Air").style.display = "none";
+        }else if (MacBookAir.includes(selboxValue)) {
+            //MacBook Airを表示
+            document.getElementById("MacBook Air").style.display = "";
+            //その他を非表示
+            document.getElementById("iPhone 12").style.display = "none";
+            document.getElementById("iPhone").style.display = "none";
+            document.getElementById("MacBook Pro").style.display = "none";
+            document.getElementById("iPad").style.display = "none";
+            document.getElementById("AppleWatch").style.display = "none";
+            document.getElementById("iPad Pro").style.display = "none";
+        } else if (AirPods.includes(selboxValue)) {
+        //その他を非表示
+        document.getElementById("iPhone 12").style.display = "none";
+        document.getElementById("iPhone").style.display = "none";
+        document.getElementById("MacBook Pro").style.display = "none";
+        document.getElementById("iPad").style.display = "none";
+        document.getElementById("AppleWatch").style.display = "none";
+        document.getElementById("iPad Pro").style.display = "none";
+        document.getElementById("MacBook Air").style.display = "none";
+
+        }
+
+    }
+}
+</script>
 </x-app-layout> 

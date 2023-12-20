@@ -18,9 +18,9 @@ use Goutte\Client;
 class BackMarketCommon
 {
     // //BackMarketのiphone12系の商品データURLの取得とDBへの保存,Python起動
-    public static function saveBackMarketURL($model){
+    public static function saveBackMarketURL($category,$model){
 
-        $path = app_path() . '/Python/BackMarket/'.$model.'.py';
+        $path = app_path() . '/Python/BackMarket/'.$category.'/'.$model.'.py';
         $command = "python " . $path;
         exec('export LANG=ja_JP.UTF-8');
         exec($command,$outputs);
@@ -36,19 +36,18 @@ class BackMarketCommon
         DB::table('back_market_urls')->insert($values);
     }
 
-        //DBから各ページのデータをGoutteで取得しDBに保存
-    public static function saveBackMarketItems(){
+    //iPhoneのスクレイピング
+    public static function saveBackMarketIphoneItems()
+    {
         $scrapeDatas = [];
         foreach(BackMarket_url::all() as $itemURL){
             $url =  $itemURL ->url;
             $crawler = \Goutte::Request('GET',$url);
             $title = $crawler->filter('.flex-grow.hidden.items-center.justify-between.mb-5 > h1')->text();
             $price = $crawler->filter('.max-h-6.overflow-hidden > div')->text();
-            $grade = $crawler->filter('.border-primary.bg-secondary > div')->text();
 
             $priceStr = str_replace(['￥',','],'',$price);
             $priceInt = (int)$priceStr;
-            $gradeStr = mb_substr($grade,0,5);
 
 
             $start = mb_strpos($title,'-')+2;
@@ -59,7 +58,6 @@ class BackMarketCommon
                 'title' => $title,
                 'price' => $priceInt,
                 'color' => $color,
-                'grade' => $gradeStr,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];
@@ -67,11 +65,117 @@ class BackMarketCommon
         DB::table('back_market_items')->insert($scrapeDatas);
     }
 
-        //DBのトランケート
-        public static function truncateTables()
-        {
-            DB::table('back_market_urls')->truncate();
-            DB::table('back_market_items')->truncate();
-    
+    //iPadのスクレイピング
+    public static function saveBackMarketIpadItems()
+    {
+        $scrapeDatas = [];
+        foreach(BackMarket_url::all() as $itemURL){
+            $url =  $itemURL ->url;
+            $crawler = \Goutte::Request('GET',$url);
+            $title = $crawler->filter('.flex-grow.hidden.items-center.justify-between.mb-5 > h1')->text();
+            $price = $crawler->filter('.max-h-6.overflow-hidden > div')->text();
+
+            $priceStr = str_replace(['￥',','],'',$price);
+            $priceInt = (int)$priceStr;
+
+            
+            $start = mb_strrpos($title, ' ');
+            $color = mb_substr($title, $start);
+
+            $scrapeDatas[] = [
+                'title' => $title,
+                'price' => $priceInt,
+                'color' => $color,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ];
         }
+        DB::table('back_market_items')->insert($scrapeDatas);
+    }
+
+    //MacBookのスクレイピング
+    public static function saveBackMarketMacBookItems()
+    {
+        $scrapeDatas = [];
+        foreach(BackMarket_url::all() as $itemURL){
+            $url =  $itemURL ->url;
+            $crawler = \Goutte::Request('GET',$url);
+            $title = $crawler->filter('.flex-grow.hidden.items-center.justify-between.mb-5 > h1')->text();
+            $price = $crawler->filter('.max-h-6.overflow-hidden > div')->text();
+
+            $priceStr = str_replace(['￥',','],'',$price);
+            $priceInt = (int)$priceStr;
+
+            
+            $start = mb_strpos($title,')')+2;
+            $end = mb_strpos($title,'-',$start+1)-1;
+            $color = mb_substr($title, $start, $end-$start, 'UTF8');
+
+            $scrapeDatas[] = [
+                'title' => $title,
+                'price' => $priceInt,
+                'color' => $color,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ];
+        }
+        DB::table('back_market_items')->insert($scrapeDatas);
+    }
+
+    //AppleWatchのスクレイピング
+    public static function saveBackMarketAppleWatchItems()
+    {
+        $scrapeDatas = [];
+        foreach(BackMarket_url::all() as $itemURL){
+            $url =  $itemURL ->url;
+            $crawler = \Goutte::Request('GET',$url);
+            $title = $crawler->filter('.flex-grow.hidden.items-center.justify-between.mb-5 > h1')->text();
+            $price = $crawler->filter('.max-h-6.overflow-hidden > div')->text();
+
+            $priceStr = str_replace(['￥',','],'',$price);
+            $priceInt = (int)$priceStr;
+
+            $scrapeDatas[] = [
+                'title' => $title,
+                'price' => $priceInt,
+                'color' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ];
+        }
+        DB::table('back_market_items')->insert($scrapeDatas);
+    }
+    
+        //AppleWatchのスクレイピング
+        public static function saveBackMarketAirPodsItems()
+        {
+            $scrapeDatas = [];
+            foreach(BackMarket_url::all() as $itemURL){
+                $url =  $itemURL ->url;
+                $crawler = \Goutte::Request('GET',$url);
+                $title = $crawler->filter('.flex-grow.hidden.items-center.justify-between.mb-5 > h1')->text();
+                $price = $crawler->filter('.max-h-6.overflow-hidden > div')->text();
+    
+                $priceStr = str_replace(['￥',','],'',$price);
+                $priceInt = (int)$priceStr;
+    
+                $scrapeDatas[] = [
+                    'title' => $title,
+                    'price' => $priceInt,
+                    'color' => null,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ];
+            }
+            DB::table('back_market_items')->insert($scrapeDatas);
+        }
+
+
+    //DBのトランケート
+    public static function truncateTables()
+    {
+        DB::table('back_market_urls')->truncate();
+        DB::table('back_market_items')->truncate();
+
+    }
 }

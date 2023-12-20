@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->unsignedInteger('price');
-            $table->string('color');
-            $table->string('grade');
+            $table->string('color')->nullable();
             $table->timestamps();
         });
     }

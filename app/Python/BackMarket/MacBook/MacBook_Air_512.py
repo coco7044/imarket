@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -11,15 +10,11 @@ options.add_argument('--headless')
 browser_path = 'C:/xampp/htdocs/laravel/imarket/app/Browser/chromedriver.exe'
 service = Service(executable_path = browser_path)
 browser = webdriver.Chrome(service=service,options=options)
-iphone12_124 = 'https://www.backmarket.co.jp/ja-jp/l/iphone-12shirizu/7b2e102d-e84d-478f-adaa-a42fd39731ae#model=001%20iPhone%2012&storage=128000%20128%20GB'
-
-# browser = webdriver.Chrome('C:/xampp/htdocs/laravel/imarket/app/Browser/chromedriver.exe')
+MacBook_Air_512 = 'https://www.backmarket.co.jp/ja-jp/l/macbook/831925a6-4741-4dca-aef4-be15604cb0e8#model=999%20MacBook%20Air&storage=3%20260.1%EF%BD%9E999GB'
 
 
-
-browser.get(iphone12_124)
-urlElements = browser.find_elements_by_xpath('//div[@class="productCard"]/a')
-itemCount = browser.find_element_by_class_name("text-primary.body-2-light.bg-neutral.px-3.py-4.rounded-sm.inline-flex.items-center.justify-center")
+browser.get(MacBook_Air_512)
+urlElements = browser.find_elements_by_class_name('focus:outline-none' and 'group')
 
 # target = ' '
 # idx = itemCount.text.find(target)
@@ -27,7 +22,8 @@ itemCount = browser.find_element_by_class_name("text-primary.body-2-light.bg-neu
 
 
 for url in urlElements:
+    if url.get_attribute('href')  is None:
+        continue
     print(url.get_attribute('href'))
-
 
 browser.quit()
