@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from time import sleep
 from selenium.webdriver.chrome.options import Options
+import sys
 
 options = Options()
 options.add_argument('--headless')
@@ -22,8 +23,12 @@ urlElements = browser.find_elements_by_class_name('focus:outline-none' and 'grou
 
 
 for url in urlElements:
-    if url.get_attribute('href')  is None:
+    if url.get_attribute('href')  is None :
         continue
-    print(url.get_attribute('href'))
-
+    if len(url.get_attribute('href')) > 0:
+        print(url.get_attribute('href'))
+    else:
+        print('Error')
+        browser.quit()
+        sys.exit()
 browser.quit()

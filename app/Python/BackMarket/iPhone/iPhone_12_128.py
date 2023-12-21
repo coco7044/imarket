@@ -26,7 +26,10 @@ urlElements = browser.find_elements_by_xpath('//div[@class="productCard"]/a')
 
 
 for url in urlElements:
-    print(url.get_attribute('href'))
-
-
+    if len(url.get_attribute('href')) > 0:
+        print(url.get_attribute('href'))
+    else:
+        print('Error')
+        browser.quit()
+        sys.exit()
 browser.quit()
