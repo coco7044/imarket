@@ -20,7 +20,7 @@
                                 <label for="backMarket">BackMarket</label>
                             </div>
                             <div>
-                                <input id="toggle2" name="site[]" type="checkbox">
+                            <input id="geo" type="checkbox" name="site[]" value="geo">
                                 <label for="toggle2">ゲオオンライン</label>
                             </div>
                         </div>

@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PriceSearchController;
 use App\Http\Controllers\Admin\AdminPurchaseController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,6 +31,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('admin.auth.login');
+});
+
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/test', [TestController::class, 'test'])->name('profile.test');
 });
 
 Route::resource('images',ImageController::class)->middleware('auth:admin')->except('show');

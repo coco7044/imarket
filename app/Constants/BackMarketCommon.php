@@ -39,6 +39,7 @@ class BackMarketCommon
     //iPhoneのスクレイピング
     public static function saveBackMarketIphoneItems()
     {
+        set_time_limit(200);
         $scrapeDatas = [];
         foreach(BackMarket_url::all() as $itemURL){
             $url =  $itemURL ->url;
@@ -68,6 +69,7 @@ class BackMarketCommon
     //iPadのスクレイピング
     public static function saveBackMarketIpadItems()
     {
+        set_time_limit(200);
         $scrapeDatas = [];
         foreach(BackMarket_url::all() as $itemURL){
             $url =  $itemURL ->url;
@@ -96,6 +98,7 @@ class BackMarketCommon
     //MacBookのスクレイピング
     public static function saveBackMarketMacBookItems()
     {
+        set_time_limit(200);
         $scrapeDatas = [];
         foreach(BackMarket_url::all() as $itemURL){
             $url =  $itemURL ->url;
@@ -125,6 +128,7 @@ class BackMarketCommon
     //AppleWatchのスクレイピング
     public static function saveBackMarketAppleWatchItems()
     {
+        set_time_limit(200);
         $scrapeDatas = [];
         foreach(BackMarket_url::all() as $itemURL){
             $url =  $itemURL ->url;
@@ -149,6 +153,7 @@ class BackMarketCommon
         //AppleWatchのスクレイピング
         public static function saveBackMarketAirPodsItems()
         {
+            set_time_limit(200);
             $scrapeDatas = [];
             foreach(BackMarket_url::all() as $itemURL){
                 $url =  $itemURL ->url;
