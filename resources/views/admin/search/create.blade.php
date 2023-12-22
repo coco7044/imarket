@@ -9,7 +9,15 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />  
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="text-red-400">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form method="post" action="{{ route('admin.priceSearch.store')}}" >
                 @csrf
                 <div class="p-2 w-1/2 mx-auto">
@@ -120,17 +128,31 @@ function change() {
             document.getElementById("AppleWatch").style.display = "none";
             document.getElementById("iPad Pro").style.display = "none";
         } else if (AirPods.includes(selboxValue)) {
-        //その他を非表示
-        document.getElementById("iPhone 12").style.display = "none";
-        document.getElementById("iPhone").style.display = "none";
-        document.getElementById("MacBook Pro").style.display = "none";
-        document.getElementById("iPad").style.display = "none";
-        document.getElementById("AppleWatch").style.display = "none";
-        document.getElementById("iPad Pro").style.display = "none";
-        document.getElementById("MacBook Air").style.display = "none";
-
+            //その他を非表示
+            document.getElementById("iPhone 12").style.display = "none";
+            document.getElementById("iPhone").style.display = "none";
+            document.getElementById("MacBook Pro").style.display = "none";
+            document.getElementById("iPad").style.display = "none";
+            document.getElementById("AppleWatch").style.display = "none";
+            document.getElementById("iPad Pro").style.display = "none";
+            document.getElementById("MacBook Air").style.display = "none";
         }
+    }
+}
 
+function buttonClick() {
+    const hide0 = document.getElementById("hide0");
+    const disp = document.getElementById("disp");
+    const hide2 = document.getElementById("hide2");
+    const email = document.getElementById("email");
+    if (hide0.checked) {
+        document.getElementById("email").style.display = "none";
+    }
+    if (disp.checked) {
+        document.getElementById("email").style.display = "";
+    }
+    if (hide2.checked) {
+        document.getElementById("email").style.display = "";
     }
 }
 </script>

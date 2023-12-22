@@ -86,11 +86,14 @@
 
                     <div class="p-2 w-1/2 pb-8 mx-auto">
                     <label for="format" class="leading-7 text-x text-gray-600">出力形式</label>
-                        <div class="relative pt-4 flex justify-around">
-                            <div><input type="radio" name="format" value="0" class="mr-2" checked>画面表示</div>
-                            <div><input type="radio" name="format" value="1" class="mr-2" >メール送信</div>
-                            <div><input type="radio" name="format" value="2" class="mr-2" >両方</div>
+                        <div  class="relative pt-4 flex justify-around">
+                            <div><input id="hide0" onchange="buttonClick()" type="radio" name="format" value="0" class="mr-2" checked>画面表示</div>
+                            <div><input id="disp" onchange="buttonClick()" type="radio" name="format" value="1" class="mr-2" >メール送信</div>
+                            <div><input id="hide2" onchange="buttonClick()" type="radio" name="format" value="2" class="mr-2" >両方</div>
                         </div>
+                    </div>
+                    <div id="email" class="fadeIn flex justify-center relative" style="display:none">
+                        <input type="email" name="email" placeholder="メールアドレスを入力" class="w-full rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"/>
                     </div>
                     <div class="p-2 w-full flex justify-around mt-4">
                         <button type="button" onclick="location.href='{{ route('admin.dashboard')}}'" class="box bg-gray-200 border-0 py-2 px-8 focus:outline-none hover:bg-gray-300 rounded text-lg">戻る</button>

@@ -1,6 +1,6 @@
 <p class="mb-4">商品が注文されました。</p>
 
-<div class="mb-4">商品情報<div>
+<div class="mb-4">商品情報</div>
 @foreach($products as $product)
 <ul class="mb-4">
     <li>商品名: {{ $product['name'] }}</li>
@@ -10,7 +10,7 @@
 </ul>
 @endforeach
 
-<div class="mb-4">購入者情報<div>
+<div class="mb-4">購入者情報</div>
 <ul>
     <li>{{ $user->name }}様</li>
 </ul>

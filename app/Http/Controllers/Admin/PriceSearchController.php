@@ -9,6 +9,12 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use App\Constants\BackMarketCommon;
 use App\Constants\GeoCommon;
+use App\Models\Back_market_items;
+use App\Models\Geo_items;
+use App\Jobs\SendScrapeMail;
+use Illuminate\Support\Facades\Redirect;
+
+
 
 
 class PriceSearchController extends Controller
@@ -34,10 +40,17 @@ class PriceSearchController extends Controller
     //検索ボタンによって実行される処理
     public function store(Request $request)
     {
-        // dd($request);
         $sites = $request['site'];
         $category = $request['category'];
         $format = $request['format'];
+        if($format !== '0'){
+            $validated = $request->validate([
+                'email' => ['required']
+            ]);
+            if( in_array($format,['1','2']) && !is_null($request['email']) ){
+                $email = $request['email'];
+            }
+        }
 
         if( $category == "iPhone 12"){
             $size = $request['iPhone_12'];
@@ -61,11 +74,11 @@ class PriceSearchController extends Controller
             $urlName = str_replace(' ','_',$category);
         }
 
-
+        BackMarketCommon::truncateTables();
+        GeoCommon::truncateTables();
 
         foreach( $sites as $site ){
             if( $site === 'backMarket' ){
-                BackMarketCommon::truncateTables();
                 BackMarketCommon::saveBackMarketURL($type,$urlName);
                 
                 if( in_array($category, ['iPad mini','iPad Air','iPad Pro']) ){
@@ -81,7 +94,6 @@ class PriceSearchController extends Controller
                 }
             }
             if($site === 'geo'){
-                GeoCommon::truncateTables();
                 if(in_array($category, ['MacBook Air','MacBook Pro'])){
                     $urlName = str_replace(' ','_',$category);
                     GeoCommon::saveGeoURL($type,$urlName);
@@ -100,7 +112,18 @@ class PriceSearchController extends Controller
                 }
             }
         }
-        return view('admin.search.index');
+        $backItems = Back_market_items::all();
+        $geoItems = Geo_items::all();
+
+        if($format === '1'){
+            SendScrapeMail::dispatch($backItems, $geoItems, $email);
+            return Redirect::route('admin.dashboard');
+        }elseif($format === '2'){
+            SendScrapeMail::dispatch($backItems, $geoItems, $email);
+            return view('admin.search.index',compact('backItems','geoItems'));
+        }else{
+            return view('admin.search.index',compact('backItems','geoItems'));
+        }
     }
 
     /**
