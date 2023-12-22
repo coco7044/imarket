@@ -9,6 +9,8 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use App\Constants\BackMarketCommon;
 use App\Constants\GeoCommon;
+use App\Models\Back_market_items;
+use App\Models\Geo_items;
 
 
 class PriceSearchController extends Controller
@@ -61,11 +63,11 @@ class PriceSearchController extends Controller
             $urlName = str_replace(' ','_',$category);
         }
 
-
+        BackMarketCommon::truncateTables();
+        GeoCommon::truncateTables();
 
         foreach( $sites as $site ){
             if( $site === 'backMarket' ){
-                BackMarketCommon::truncateTables();
                 BackMarketCommon::saveBackMarketURL($type,$urlName);
                 
                 if( in_array($category, ['iPad mini','iPad Air','iPad Pro']) ){
@@ -81,7 +83,6 @@ class PriceSearchController extends Controller
                 }
             }
             if($site === 'geo'){
-                GeoCommon::truncateTables();
                 if(in_array($category, ['MacBook Air','MacBook Pro'])){
                     $urlName = str_replace(' ','_',$category);
                     GeoCommon::saveGeoURL($type,$urlName);
@@ -100,7 +101,10 @@ class PriceSearchController extends Controller
                 }
             }
         }
-        return view('admin.search.index');
+        $backItems = Back_market_items::all();
+        $geoItems = Geo_items::all();
+
+        return view('admin.search.index',compact('backItems','geoItems'));
     }
 
     /**

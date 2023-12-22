@@ -13,6 +13,5 @@ class Back_market_items extends Model
         'title',
         'price',
         'color',
-        'grade',
     ];
 }

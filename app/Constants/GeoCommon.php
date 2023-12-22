@@ -143,29 +143,6 @@ class GeoCommon
         DB::table('geo_items')->insert($scrapeDatas);
     }
     
-        //AirPodsのスクレイピング
-        public static function saveGeoAirPodsItems()
-        {
-            $scrapeDatas = [];
-            foreach(BackMarket_url::all() as $itemURL){
-                $url =  $itemURL ->url;
-                $crawler = \Goutte::Request('GET',$url);
-                $title = $crawler->filter('.flex-grow.hidden.items-center.justify-between.mb-5 > h1')->text();
-                $price = $crawler->filter('.max-h-6.overflow-hidden > div')->text();
-    
-                $priceStr = str_replace(['￥',','],'',$price);
-                $priceInt = (int)$priceStr;
-    
-                $scrapeDatas[] = [
-                    'title' => $title,
-                    'price' => $priceInt,
-                    'color' => null,
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ];
-            }
-            DB::table('back_market_items')->insert($scrapeDatas);
-        }
 
 
     //DBのトランケート
