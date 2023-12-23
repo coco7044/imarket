@@ -87,7 +87,9 @@
                         <div class="fadeIn w-full lg:w-1/4 p-2 md:p-4">
                             <a href="{{ route('user.items.show', ['item' => $product->id ])}}">    
                                 <div class="box border rounded-md p-2 md:p-4">
-                                    <x-thumbnail filename="{{$product->filename ?? ''}}" type="products" />
+                                    <span class="flex justify-center">
+                                        <x-thumbnail filename="{{$product->filename ?? ''}}" type="products" />
+                                    </span>
                                         <div class="mt-4">
                                             <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ $product->category }}</h3>
                                             <h2 class="text-gray-900 title-font text-lg font-medium">{{ $product->name }}</h2>

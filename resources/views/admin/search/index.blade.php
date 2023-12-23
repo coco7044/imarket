@@ -65,7 +65,7 @@
                                         <tr class="border-b border-gray-200" >
                                             <td class="px-4 py-3 text-left">{{ $item->title }}</td>
                                             <td class="px-4 py-3 text-center">{{ number_format($item->price) }}円</td>
-                                            <td class="px-4 py-3 text-center">{{ $item->color }}</td>
+                                            <td class="px-4 py-3 text-center"{{ $item->color }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

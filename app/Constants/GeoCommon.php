@@ -108,7 +108,7 @@ class GeoCommon
             $scrapeDatas[] = [
                 'title' => $data[0],
                 'price' => $data[1],
-                'color' => null,
+                'color' => '不明',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];

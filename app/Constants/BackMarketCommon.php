@@ -142,7 +142,7 @@ class BackMarketCommon
             $scrapeDatas[] = [
                 'title' => $title,
                 'price' => $priceInt,
-                'color' => null,
+                'color' => '不明',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];
@@ -167,7 +167,7 @@ class BackMarketCommon
                 $scrapeDatas[] = [
                     'title' => $title,
                     'price' => $priceInt,
-                    'color' => null,
+                    'color' => '不明',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ];
