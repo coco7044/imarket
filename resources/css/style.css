@@ -124,3 +124,7 @@ transition-duration: 0.5s;
 .bordercrear{
     border: 1px solid transparent;
 }
+.foo {
+    display: flex;
+    justify-content: flex-end;
+}

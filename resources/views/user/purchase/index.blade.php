@@ -34,11 +34,15 @@
                             </div>
                                 @if($history->status === 0)
                                     <div>
-                                        <div class="md:flex md:justify-center" >購入済み</div>
-                                        <button type="button" onclick="location.href='{{ route('user.purchase.cancel',['purchase_id' => $history->pid])}}'" class="box bg-slate-300 border-0 py-2 px-8 focus:outline-none hover:bg-gray-400 rounded text-lg">キャンセル</button>
+                                        <div class="md:flex md:justify-center" >
+                                            <div>購入済み</div>
+                                        </div>
+                                        <div class="foo">
+                                            <button type="button" onclick="location.href='{{ route('user.purchase.cancel',['purchase_id' => $history->pid])}}'" class="box foo bg-slate-300 border-0 py-2 px-8 focus:outline-none hover:bg-gray-400 rounded text-lg">キャンセル</button>
+                                        </div>
                                     </div>
                                 @else
-                                    <div class="px-4 text-lg">キャンセル済み</div>
+                                    <div class="foo px-4 text-lg">キャンセル済み</div>
                                 @endif
                         </div>
                         @endforeach
