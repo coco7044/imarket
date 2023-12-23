@@ -11,7 +11,7 @@
                         <div class="fadeIn pb-4">
                             <a href="{{ route('user.items.index', ['category' =>'iPhone' ,'sort' => \Constant::SORT_ORDER['later']])}}">
                                 <div class=" box rounded-lg bg-white flex justify-center flex-wrap w-full sm:py-24 py-16 sm:px-10 px-6 relative">
-                                    <div class="bordercrear img_wrap bordercrear img_wrap flex justify-center">
+                                    <div class="bordercrear img_wrap flex justify-center">
                                         <img src="{{ asset('images/top-iphone.png')}}">
                                     </div>
                                     <div class="text-center relative z-10 w-full">
@@ -26,7 +26,7 @@
                         <div class="fadeIn w-1/2 pb-2 pr-1">
                             <a href="{{ route('user.items.index', ['category' => 'iPad' ,'sort' => \Constant::SORT_ORDER['later']])}}">
                                 <div class=" box rounded-lg flex flex-wrap justify-center bg-white">
-                                    <div class="bordercrear img_wrap bordercrear img_wrap flex justify-center">
+                                    <div class="bordercrear img_wrap flex justify-center">
                                         <img src="{{ asset('images/top-ipad.png')}}">
                                     </div>
                                     <div class="text-center relative z-10 w-full">
@@ -39,7 +39,7 @@
                         <div class="fadeIn w-1/2 pb-2 pl-1">
                             <a href="{{ route('user.items.index', ['category' => 'MacBook' ,'sort' => \Constant::SORT_ORDER['later']])}}">
                                 <div class="box rounded-lg flex flex-wrap justify-center bg-white">
-                                    <div class="bordercrear img_wrap bordercrear img_wrap flex justify-center">
+                                    <div class="bordercrear img_wrap flex justify-center">
                                         <img src="{{ asset('images/top-mac.png')}}">
                                     </div>
                                     <div class="text-center relative z-10 w-full">
@@ -54,7 +54,7 @@
                         <div class="fadeIn w-1/2 pb-2 pr-1">
                             <a href="{{ route('user.items.index', ['category' => 'AppleWatch' ,'sort' => \Constant::SORT_ORDER['later']])}}">
                                 <div class="box rounded-lg flex flex-wrap justify-center bg-white">
-                                    <div class="bordercrear img_wrap bordercrear img_wrap flex justify-center">
+                                    <div class="bordercrear img_wrap flex justify-center">
                                         <img src="{{ asset('images/top-watch.png')}}">
                                     </div>
                                     <div class="text-center relative z-10 w-full">
@@ -67,7 +67,7 @@
                         <div class="fadeIn w-1/2 pb-2 pl-1">
                             <a href="{{ route('user.items.index', ['category' => 'AirPods & イヤホン' ,'sort' => \Constant::SORT_ORDER['later']])}}">
                                 <div class="box rounded-lg flex flex-wrap justify-center bg-white">
-                                    <div class="bordercrear img_wrap bordercrear img_wrap flex justify-center">
+                                    <div class="bordercrear img_wrap flex justify-center">
                                         <img src="{{ asset('images/top-pods.png')}}">
                                     </div>
                                     <div class="text-center relative z-10 w-full">
