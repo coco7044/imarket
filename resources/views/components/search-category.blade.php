@@ -1,4 +1,4 @@
-                    <div class="p-2 w-1/2 mx-auto">
+<div class="p-2 w-1/2 mx-auto">
                         <div class="pb-4 relative">
                             <label for="category" class="leading-7 text-x text-gray-600">カテゴリー</label>
                             <div class="pt-4">
@@ -93,9 +93,9 @@
                         </div>
                     </div>
                     <div id="email" class="fadeIn flex justify-center relative" style="display:none">
-                        <input type="email" name="email" placeholder="メールアドレスを入力" class="w-full rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"/>
+                        <input type="email" name="email" placeholder="メールアドレスを入力" class=" md:w-1/2 rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"/>
                     </div>
                     <div class="p-2 w-full flex justify-around mt-4">
                         <button type="button" onclick="location.href='{{ route('admin.dashboard')}}'" class="box bg-gray-200 border-0 py-2 px-8 focus:outline-none hover:bg-gray-300 rounded text-lg">戻る</button>
-                        <button type="submit" class="box text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">検索</button>                        
+                        <button type="submit" id="button" class="box text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">検索</button>                        
                     </div>
