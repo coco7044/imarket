@@ -5,9 +5,9 @@
     </h2>
 </x-slot>
 
-<div class="fadeIn py-12">
+<div class="fadeIn px-3 py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="bg-white overflow-hidden shadow-sm rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -18,23 +18,7 @@
                     </ul>
                 </div>
             @endif
-            <form method="post" action="{{ route('admin.priceSearch.store')}}" >
-                @csrf
-                <div class="p-2 w-1/2 mx-auto">
-                    <label for="site" class="leading-7 text-x text-gray-600">検索サイト</label>
-                        <div class="flex pt-4 pb-8 justify-around">
-                            <div>
-                                <input id="backMarket" type="checkbox" name="site[]" value="backMarket" checked>
-                                <label for="backMarket">BackMarket</label>
-                            </div>
-                            <div>
-                            <input id="geo" type="checkbox" name="site[]" value="geo">
-                                <label for="toggle2">ゲオオンライン</label>
-                            </div>
-                        </div>
-                    </div>
-                        <x-search-category :categories="$categories"/>
-                </form>
+            <x-search-category :categories="$categories"/> 
             </div>
         </div>
     </div>

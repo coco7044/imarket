@@ -14,16 +14,18 @@
                     <button onclick="location.href='{{ route('admin.products.create')}}'" class="box mb-4 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">商品の新規登録</button>
                     </div>
                     <div class="flex flex-wrap">
-                    @foreach ($products as $product )
-                    <div class="w-1/4 p-2 md:p-4">
-                        <a href="{{ route('admin.products.edit', ['product' => $product->id ])}}">  
-                            <div class=" box border rounded-md p-2 md:p-4">
-                                <x-thumbnail filename="{{$product->imageFirst->filename ?? ''}}" type="products" />
-                                <div class="text-gray-700">{{ $product->name }}</div>
-                            </div>
-                        </a>
-                    </div>
-                    @endforeach
+                        @foreach ($products as $product )
+                        <div class="w-1/4 p-2 md:p-4">
+                            <a href="{{ route('admin.products.edit', ['product' => $product->id ])}}">  
+                                <div class=" box border rounded-md p-2 md:p-4">
+                                    <span class="flex justify-center">
+                                        <x-thumbnail filename="{{$product->imageFirst->filename ?? ''}}" type="products" />
+                                    </span>
+                                    <div class="text-gray-700">{{ $product->name }}</div>
+                                </div>
+                            </a>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
