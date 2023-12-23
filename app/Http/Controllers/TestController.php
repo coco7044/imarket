@@ -25,7 +25,7 @@ class TestController extends Controller
 
         // return view('admin.search.index',compact('backItems','geoItems'));
         
-
+        return view('admin.test.index');
         
     }
 }
