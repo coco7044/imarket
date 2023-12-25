@@ -8,6 +8,7 @@
     <div class="fadeIn py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <x-flash-message status="session('alert')" /> 
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="md:flex md:justify-around">
                         <div class="md:w-1/2 flex justify-center items-center">
@@ -52,31 +53,58 @@
                         </div>
 
                         <div class="md:w-1/2 ml-4">
-                            <h2 class="mb-4 text-sm title-font text-gray-500 tracking-widest">{{ $product->category->name }}</h2>
-                            <h1 class="mb-4 text-gray-900 text-3xl title-font font-medium">{{ $product->name }}</h1>
-                            <div>
-                                <span class="title-font font-medium text-2xl text-gray-900">{{ number_format($product->price) }}</span><span class="text-sm text-gray-700">円(税込)</span>
-                            </div>
                             <form method="post" action="{{ route('user.cart.add')}}">
                                 @csrf
-                                <div class="flex mt-10 items-center">
-                                    <span class="mr-3">数量</span>
-                                    <div class="relative">
-                                        <select name="quantity" class="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
-                                            @for ($i = 1; $i <= $quantity; $i++)
-                                                <option value="{{$i}}">{{$i}}</option>  
-                                            @endfor
-                                        </select>
+                                <div class="bg-white py-6 sm:py-8 lg:py-12">
+                                    <div class="mx-auto max-w-screen-xl px-4 md:px-8">
+                                        <div class="grid gap-8">
+                                            <!-- content - start -->
+                                            <div class="md:py-8">
+                                                <!-- name - start -->
+                                                <div class="mb-2 md:mb-3">
+                                                    <span class="mb-0.5 inline-block text-gray-500">{{ $product->category->name }}</span>
+                                                    <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl">{{ $product->name }}</h2>
+                                                </div>
+                                                <!-- name - end -->
+
+                                                @if($count > 1)
+                                                    <a href="" class="tags">もっと見る</a>
+                                                @endif
+
+                                                <!-- price - start -->
+                                                <div class="pt-8 mb-4">
+                                                    <div class="flex items-end gap-2">
+                                                        <span class="text-xl font-bold text-gray-800 md:text-2xl">{{ number_format($product->price) }}</span><span class="text-sm text-gray-700">円(税込)</span>
+                                                    </div>
+                                                </div>
+                                                <!-- price - end -->
+
+                                                <!-- buttons - start -->
+                                                <div class="flex mt-10 items-center">
+                                                    <span class="p-3 mb-3 inline-block text-sm font-semibold text-gray-500 md:text-base">数量</span>
+                                                    <div class="relative">
+                                                        <select name="quantity" class="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
+                                                            @for ($i = 1; $i <= $quantity; $i++)
+                                                                <option value="{{$i}}">{{$i}}</option>  
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="pt-4 flex justify-end">
+                                                    <button class="flex justify-center ml-auto shadow-lg px-2 py-1 w-1/2 bg-blue-400 text-lg text-white font-semibold rounded  hover:bg-blue-500 hover:shadow-sm hover:translate-y-0.5 transform transition">カートに入れる</button>
+                                                    <input type="hidden" name="product_id" value="{{ $product->id}}">                                           
+                                                </div>
+                                                <!-- buttons - end -->
+                                            </div>
+                                        <!-- content - end -->
+                                        </div>
                                     </div>
-                                    <button class="flex ml-auto shadow-lg px-2 py-1  bg-blue-400 text-lg text-white font-semibold rounded  hover:bg-blue-500 hover:shadow-sm hover:translate-y-0.5 transform transition">カートに入れる</button>
-                                    <input type="hidden" name="product_id" value="{{ $product->id}}">
                                 </div>
                             </form>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </x-app-layout>
+</x-app-layout>

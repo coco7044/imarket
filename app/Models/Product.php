@@ -22,6 +22,8 @@ class Product extends Model
         'is_selling',
         'sort_order',
         'secondary_category_id',
+        'color',
+        'capacity',
         'image1',
         'image2',
         'image3',

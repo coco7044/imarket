@@ -55,24 +55,97 @@
                     </div>
                     <div class="p-2 w-1/2 mx-auto">
                         <div class="relative">
-                        <label for="category" class="leading-7 text-sm text-gray-600">カテゴリー</label>
-                        <select name="category" id="category" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                            @foreach($categories as $category)
-                            <optgroup label="{{ $category->name }}">
-                            @foreach($category->secondary as $secondary)
-                                <option value="{{ $secondary->id}}" @if( $secondary->id === $product->secondary_category_id ) selected @endif >
-                                {{ $secondary->name }}
-                                </option>
-                            @endforeach
-                            @endforeach
-                        </select>
-                        
+                            <label for="category" class="leading-7 text-sm text-gray-600">カテゴリー</label>
+                            <select name="category" id="category" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                @foreach($categories as $category)
+                                    <optgroup label="{{ $category->name }}">
+                                        @foreach($category->secondary as $secondary)
+                                            <option value="{{ $secondary->id}}" @if( $secondary->id === $product->secondary_category_id ) selected @endif >
+                                                {{ $secondary->name }}
+                                            </option>
+                                        @endforeach
+                                @endforeach
+                                    </optgroup>
+                            </select>
                         </div>
                     </div>
-                    <x-select-image :images="$images" currentId="{{$product->image1}}" currentImage="{{$product->imageFirst->filename ?? ''}}" name="image1" />
-                    <x-select-image :images="$images" currentId="{{$product->image2}}" currentImage="{{$product->imageSecond->filename ?? ''}}" name="image2" />
-                    <x-select-image :images="$images" currentId="{{$product->image3}}" currentImage="{{$product->imageThird->filename ?? ''}}" name="image3" />
-                    <x-select-image :images="$images" currentId="{{$product->image4}}" currentImage="{{$product->imageFourth->filename ?? ''}}" name="image4" />
+                    <div class="p-2 w-1/2 mx-auto">
+                        <div class="relative">
+                            <label for="color" class="leading-7 text-sm text-gray-600">カラー</label>
+                            <select name="color" id="color" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                <option value="none" @if( $product->color === "none" ) selected @endif >
+                                    無し
+                                </option>
+                                <option value="blue" @if( $product->color === "blue" ) selected @endif>
+                                    ブルー
+                                </option>
+                                <option value="black" @if( $product->color === "black" ) selected @endif>
+                                    ブラック
+                                </option>
+                                <option value="purple" @if( $product->color === "purple" ) selected @endif>
+                                    パープル
+                                </option>
+                                <option value="rightGreen" @if( $product->color === "rightGreen" ) selected @endif>
+                                    ライトグリーン
+                                </option>
+                                <option value="white" @if( $product->color === "white" ) selected @endif>
+                                    ホワイト
+                                </option>
+                                <option value="pink" @if( $product->color === "pink" ) selected @endif>
+                                    ピンク
+                                </option>
+                                <option value="green" @if( $product->color === "green" ) selected @endif>
+                                    グリーン
+                                </option>
+                                <option value="gold" @if( $product->color === "gold" ) selected @endif>
+                                    ゴールド
+                                </option>
+                                <option value="silver" @if( $product->color === "silver" ) selected @endif>
+                                    シルバー
+                                </option>
+                                <option value="gray" @if( $product->color === "gray" ) selected @endif>
+                                    グレー
+                                </option>
+                                <option value="yellow" @if( $product->color === "yellow" ) selected @endif>
+                                    イエロー
+                                </option>
+                                <option value="red" @if( $product->color === "red" ) selected @endif>
+                                    レッド
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="p-2 w-1/2 mx-auto">
+                        <div class="relative">
+                            <label for="capacity" class="leading-7 text-sm text-gray-600">容量(GB)</label>
+                            <select name="capacity" id="capacity" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                <option value="0" @if( $product->capacity === 0 ) selected @endif>
+                                    無し
+                                </option>
+                                <option value="64" @if( $product->capacity === 64 ) selected @endif>
+                                    64GB
+                                </option>
+                                <option value="128" @if( $product->capacity === 128 ) selected @endif>
+                                    128GB
+                                </option>
+                                <option value="256" @if( $product->capacity === 256 ) selected @endif>
+                                    256GB
+                                </option>
+                                <option value="512" @if( $product->capacity === 512 ) selected @endif>
+                                    512GB
+                                </option>
+                                <option value="1000" @if( $product->capacity === 1000 ) selected @endif>
+                                    1000GB
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="pt-8">
+                        <x-select-image :images="$images" currentId="{{$product->image1}}" currentImage="{{$product->imageFirst->filename ?? ''}}" name="image1" />
+                        <x-select-image :images="$images" currentId="{{$product->image2}}" currentImage="{{$product->imageSecond->filename ?? ''}}" name="image2" />
+                        <x-select-image :images="$images" currentId="{{$product->image3}}" currentImage="{{$product->imageThird->filename ?? ''}}" name="image3" />
+                        <x-select-image :images="$images" currentId="{{$product->image4}}" currentImage="{{$product->imageFourth->filename ?? ''}}" name="image4" />
+                    </div>
                     <div class="p-2 w-1/2 mx-auto">
                         <div class="relative flex justify-around">
                         <div><input type="radio" name="is_selling" value="1" class="mr-2" @if($product->is_selling === 1){ checked } @endif>販売中</div>

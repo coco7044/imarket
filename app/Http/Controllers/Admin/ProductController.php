@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function index()
     {
         //N個のSQLが発行されるのを防ぐ処理
-        $products = Product::with('imageFirst')->get();
+        $products = Product::with('imageFirst')->orderBy('created_at','desc')->get();
         return view('admin.products.index',compact('products'));
     }
 
@@ -61,6 +61,8 @@ class ProductController extends Controller
                     'price' => $request->price,
                     'sort_order' => $request->sort_order,
                     'secondary_category_id' => $request->category,
+                    'color' => $request->color,
+                    'capacity' => $request->capacity,
                     'image1' => $request->image1,
                     'image2' => $request->image2,
                     'image3' => $request->image3,
@@ -117,8 +119,7 @@ class ProductController extends Controller
         if($request->current_quantity !== $quantity){
             $id = $request->route()->parameter('product');
             return redirect()->route('admin.products.edit', [ 'product' => $id])
-            ->with(['message' => '在庫数が変更されています。再度確認してください。',
-                'status' => 'alert']);            
+            ->with(['message' => '在庫数が変更されています。再度確認してください。', 'status' => 'alert']);            
 
         } else {
 
@@ -129,6 +130,8 @@ class ProductController extends Controller
                         $product->price = $request->price;
                         $product->sort_order = $request->sort_order;
                         $product->secondary_category_id = $request->category;
+                        $product->color = $request->color;
+                        $product->capacity = $request->capacity;
                         $product->image1 = $request->image1;
                         $product->image2 = $request->image2;
                         $product->image3 = $request->image3;
@@ -155,8 +158,7 @@ class ProductController extends Controller
     
             return redirect()
             ->route('admin.products.index')
-            ->with(['message' => '商品情報を更新しました。',
-            'status' => 'info']);
+            ->with(['message' => '商品情報を更新しました。', 'status' => 'info']);
         }
     }
 

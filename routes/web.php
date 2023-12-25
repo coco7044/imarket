@@ -35,7 +35,8 @@ Route::middleware('auth:users')->group(function(){
     Route::get('/dashboard', [ItemController::class, 'top'])->name('items.top');
     Route::get('index/{primary_category}', [ItemController::class, 'primaryIndex'])->name('items.index');
     Route::get('index', [ItemController::class, 'index'])->name('items.index');
-    Route::get('show/{item}', [ItemController::class, 'show'])->name('items.show');
+    Route::get('show/{item}/{option}', [ItemController::class, 'show'])->name('items.show');
+    Route::get('more/{item}/{color}/{capacity}', [ItemController::class, 'more'])->name('items.more');
 });
 
 Route::prefix('cart')->middleware('auth:users')->group(function(){
