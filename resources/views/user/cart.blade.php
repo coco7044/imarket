@@ -20,7 +20,7 @@
                                 @endif
                             </div>
                             <div class="md:w-3/12">
-                                <a class="tags" href="{{ route('user.items.show',['item' => $product->id]) }}">{{ $product->name }}</a>
+                                <a class="tags" href="{{ route('user.items.show',['item' => $product->id,'option'=>' ']) }}">{{ $product->name }}</a>
                             </div>
                             <div>
                                 <div>数量：{{ $product->pivot->quantity }}個</div>

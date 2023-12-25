@@ -251,6 +251,7 @@ return [
         'tel'=>'電話番号',
         'kana'=>'フリガナ',
         'postcode'=>'郵便番号',
+        'category'=>'カテゴリー'
     ],
 
 ];

@@ -45,19 +45,93 @@
                             <select name="category" id="category" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             @foreach($categories as $category)
                                 <optgroup label="{{ $category->name }}">
-                                @foreach($category->secondary as $secondary)
-                                <option value="{{ $secondary->id}}" >
-                                    {{ $secondary->name }}
-                                </option>
-                                @endforeach
+                                    @foreach($category->secondary as $secondary)
+                                        <option value="{{ $secondary->id}}" >
+                                            {{ $secondary->name }}
+                                        </option>
+                                    @endforeach
+                                </optgroup>
                             @endforeach
                             </select>
                         </div>
                     </div>
+                    <div class="p-2 w-1/2 mx-auto">
+                        <div class="relative">
+                            <label for="color" class="leading-7 text-sm text-gray-600">カラー</label>
+                            <select name="color" id="color" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                <option value="none" >
+                                    無し
+                                </option>
+                                <option value="blue" >
+                                    ブルー
+                                </option>
+                                <option value="black" >
+                                    ブラック
+                                </option>
+                                <option value="purple" >
+                                    パープル
+                                </option>
+                                <option value="rightGreen" >
+                                    ライトグリーン
+                                </option>
+                                <option value="white" >
+                                    ホワイト
+                                </option>
+                                <option value="pink" >
+                                    ピンク
+                                </option>
+                                <option value="green" >
+                                    グリーン
+                                </option>
+                                <option value="gold" >
+                                    ゴールド
+                                </option>
+                                <option value="silver" >
+                                    シルバー
+                                </option>
+                                <option value="gray" >
+                                    グレー
+                                </option>
+                                <option value="yellow" >
+                                    イエロー
+                                </option>
+                                <option value="red" >
+                                    レッド
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="p-2 w-1/2 mx-auto">
+                        <div class="relative">
+                            <label for="capacity" class="leading-7 text-sm text-gray-600">容量(GB)</label>
+                            <select name="capacity" id="capacity" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                <option value="0" >
+                                    無し
+                                </option>
+                                <option value="64" >
+                                    64GB
+                                </option>
+                                <option value="128" >
+                                    128GB
+                                </option>
+                                <option value="256" >
+                                    256GB
+                                </option>
+                                <option value="512" >
+                                    512GB
+                                </option>
+                                <option value="1000" >
+                                    1000GB
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="pt-8">
                         <x-select-image :images="$images" name="image1" />
                         <x-select-image :images="$images" name="image2" />
                         <x-select-image :images="$images" name="image3" />
                         <x-select-image :images="$images" name="image4" />
+                    <div>
                     <div class="p-2 w-1/2 mx-auto">
                         <div class="relative flex justify-around">
                             <div><input type="radio" name="is_selling" value="1" class="mr-2" checked>販売中</div>

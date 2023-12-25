@@ -21,6 +21,8 @@ class CreateProductsTable extends Migration
             $table->integer('sort_order')->nullable();
             $table->foreignId('secondary_category_id')
             ->constrained();
+            $table->string('color');
+            $table->unsignedInteger('capacity');
             $table->foreignId('image1')
             ->nullable()
             ->constrained('images');

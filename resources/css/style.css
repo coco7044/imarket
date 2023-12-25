@@ -62,14 +62,29 @@
 .gold{
     background-color: rgb(245, 231, 204);
 }
+.silver{
+    background-color: #D8D8D8;
+}
+.yellow{
+    background-color: rgb(255, 247, 0);
+}
+.gray{
+    background-color: #52514F;
+}
+
+
 img {
     margin: auto;
     display: block;
 }
 /*ホバー時の指定*/
-.box:hover{
-    box-shadow:0px 0px 10px #8f8f8f;
-    transition: all 0.5s;
+.box{
+    box-shadow: 0 0 3px 0 rgba(0,0,0,.12), 0 2px 3px 0 rgba(0,0,0,.22);
+    transition: .3s;
+}
+.box:hover {
+	box-shadow: 0 15px 30px -5px rgba(0,0,0,.15), 0 0 5px rgba(0,0,0,.1);
+	transform: translateY(-4px);
 }
 
 .tags:link {
@@ -92,7 +107,7 @@ img {
 }
 .fadeIn{
     animation-name:fadeInAnime;
-    animation-duration:1.5s;
+    animation-duration:1.0s;
     animation-fill-mode:forwards;
     opacity:0;
 }
@@ -127,4 +142,8 @@ transition-duration: 0.5s;
 .foo {
     display: flex;
     justify-content: flex-end;
+}
+
+.end{
+    align-items: flex-end;
 }
