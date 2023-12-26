@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Http\Controllers\Controller;
-
+use App\Models\UserProfileInfo;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -48,11 +49,11 @@ class ProfileController extends Controller
             'password' => ['required', 'current_password'],
         ]);
 
-        $user = $request->user();
+        UserProfileInfo::where('user_id', Auth::id())->delete();
+        User::where('id',Auth::id())->delete();
 
         Auth::logout();
 
-        $user->delete();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

@@ -11,10 +11,11 @@ use App\Models\Stock;
 use App\Models\User;
 use App\Models\Purchase;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
     protected $fillable = [
         'name',

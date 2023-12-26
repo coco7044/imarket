@@ -18,7 +18,7 @@
                     @foreach($products as $product)
                     <!-- article - start -->
                     <div class="box flex flex-col overflow-hidden rounded-lg border bg-white">
-                        <a href="{{ route('admin.products.edit', ['product' => $product->id ])}}">  
+                        <a href="{{ route('admin.products.edit', ['product' => $product->id])}}">  
                             <span class="flex justify-center">
                                 <x-thumbnail filename="{{$product->imageFirst->filename ?? ''}}" type="products" />
                             </span>

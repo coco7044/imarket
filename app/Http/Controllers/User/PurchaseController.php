@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 
 
@@ -21,9 +22,13 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        $histories = DB::table('purchases')
-        ->join('product_purchase','purchases.id','=','product_purchase.purchase_id')
-        ->join('products','product_purchase.product_id','=','products.id')
+
+        $product = Product::withTrashed();
+
+        $histories = Purchase::join('product_purchase','purchases.id','=','product_purchase.purchase_id')
+        ->joinSub($product, 'products', function ($join) {
+            $join->on('product_purchase.product_id','=','products.id');
+        })
         ->join('images','products.image1','=','images.id')
         ->select('purchases.created_at','products.id as id','name','filename','title','quantity','status','purchase_product_price','purchases.id as pid')
         ->where('purchases.user_id','=',Auth::id())

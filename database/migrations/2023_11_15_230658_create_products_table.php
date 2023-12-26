@@ -19,23 +19,15 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('price');
             $table->boolean('is_selling');
             $table->integer('sort_order')->nullable();
-            $table->foreignId('secondary_category_id')
-            ->constrained();
+            $table->foreignId('secondary_category_id')->constrained();
             $table->string('color');
             $table->unsignedInteger('capacity');
-            $table->foreignId('image1')
-            ->nullable()
-            ->constrained('images');
-            $table->foreignId('image2')
-            ->nullable()
-            ->constrained('images');
-            $table->foreignId('image3')
-            ->nullable()
-            ->constrained('images');
-            $table->foreignId('image4')
-            ->nullable()
-            ->constrained('images');
+            $table->foreignId('image1')->nullable()->constrained('images');
+            $table->foreignId('image2')->nullable()->constrained('images');
+            $table->foreignId('image3')->nullable()->constrained('images');
+            $table->foreignId('image4')->nullable()->constrained('images');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
