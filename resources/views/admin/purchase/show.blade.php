@@ -24,7 +24,7 @@
                                 @endif
                             </div>
                             <div class="md:w-3/12">
-                                <a class="tags" href="{{ route('user.items.show',['item' => $purchase->id]) }}">{{ $purchase->name }}</a>
+                                {{ $purchase->name }}
                             </div>
                             <div>
                                 <div>数量：{{ $purchase->quantity }}個</div>

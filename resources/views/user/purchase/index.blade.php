@@ -24,7 +24,7 @@
                                 @endif
                             </div>
                             <div class="md:w-3/12">
-                                <a class="tags" href="{{ route('user.items.show',['item' => $history->id]) }}">{{ $history->name }}</a>
+                                <a class="tags" href="{{ route('user.items.show',['item' => $history->id,'option'=>' ']) }}">{{ $history->name }}</a>
                             </div>
                             <div>
                                 <div>数量：{{ $history->quantity }}個</div>

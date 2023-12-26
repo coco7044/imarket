@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('kana');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('tel')->unique();
             $table->string('postcode');
             $table->string('address');
             $table->tinyInteger('gender'); // 0男性, 1女性、2その他
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -103,7 +103,7 @@ class ProfileInfoController extends Controller
         if( $request->buy === "0"){
 
             return Redirect::route('user.profileInfo.index')
-            ->with('message','会員情報を更新しました。');
+            ->with(['message' => '会員情報を更新しました。', 'status' => 'info']);
         }else{
             return Redirect::route('user.cart.checkout');
         }
