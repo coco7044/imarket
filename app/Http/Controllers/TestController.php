@@ -7,6 +7,7 @@ use App\Constants\GeoCommon;
 use App\Models\Back_market_items;
 use App\Models\Geo_items;
 use App\Models\User;
+use Illuminate\Support\Facades\Redirect;
 
 
 
@@ -25,6 +26,10 @@ class TestController extends Controller
         // $geoItems = Geo_items::all();
 
         // return view('admin.search.index',compact('backItems','geoItems'));
+
+
+        return redirect('/');
+
 
         $tUser = User::withTrashed()->get();
         $User = User::all();

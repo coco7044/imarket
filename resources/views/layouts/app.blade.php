@@ -19,6 +19,8 @@
 
             @if(auth('admin')->user())
                 @include('layouts.admin-navigation')
+            @elseif(auth()->guest())
+                @include('layouts.guest-navigation')
             @else
                 @include('layouts.user-navigation')
             @endif
