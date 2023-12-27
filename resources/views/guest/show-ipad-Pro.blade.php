@@ -67,9 +67,11 @@
                                                 </div>
                                                 <!-- name - end -->
 
+
                                                 @if($count > 1)
-                                                    <a href="" class="tags">もっと見る</a>
+                                                    <a href="{{ route('items.more',['item'=>$product->id,'color'=>$product->color,'capacity'=>$product->capacity]) }}" class="tags">もっと見る</a>
                                                 @endif
+
 
                                                 <!-- color - start -->
                                                 <div class="mb-4 md:mb-6 pt-8">

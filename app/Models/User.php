@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Product;
 use App\Models\Purchase;
+use App\Models\UserProfileInfo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -58,4 +59,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Purchase::class);
     }
+
+    public function userProfileInfo()
+    {
+        return $this->belongsTo(UserProfileInfo::class);
+    }
+
 }

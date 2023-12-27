@@ -31,7 +31,6 @@ class ProductFactory extends Factory
             'image2' => $this->faker->numberBetween(1,6),
             'image3' => $this->faker->numberBetween(1,6),
             'image4' => $this->faker->numberBetween(1,6),
-
         ];
     }
 }

@@ -54,9 +54,9 @@ class CategorySeeder extends Seeder
                 'primary_category_id' => 1
             ],
             [
-            'name' => 'iPad mini',
-            'sort_order' => 4,
-            'primary_category_id' => 2
+                'name' => 'iPad mini',
+                'sort_order' => 4,
+                'primary_category_id' => 2
             ],
             [
                 'name' => 'iPad Air',
