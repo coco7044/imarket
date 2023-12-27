@@ -62,24 +62,23 @@
                                             <div class="md:py-8">
                                                 <!-- name - start -->
                                                 <div class="mb-2 md:mb-3">
-                                                    <span class="mb-0.5 inline-block text-gray-500">{{ $product->name }}</span>
+                                                    <span class="mb-0.5 inline-block text-gray-500">{{ $product->category->name }}</span>
                                                     <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl">{{ $product->name }}</h2>
                                                 </div>
                                                 <!-- name - end -->
 
+
                                                 @if($count > 1)
-                                                    <a href="{{ route('user.items.more',['item'=>$product->id,'color'=>$product->color,'capacity'=>$product->capacity]) }}" class="tags">もっと見る</a>
+                                                    <a href="{{ route('items.more',['item'=>$product->id,'color'=>$product->color,'capacity'=>$product->capacity]) }}" class="tags">もっと見る</a>
                                                 @endif
+
 
                                                 <!-- color - start -->
                                                 <div class="mb-4 md:mb-6 pt-8">
                                                     <span class="mb-3 inline-block text-sm font-semibold text-gray-500 md:text-base">カラー</span>
                                                     <div class="flex flex-wrap gap-2" id="color">
-                                                        <a nama="color" value="gray" @if($product->color === 'gray') href="javascript:void(0)" @else href="{{ route('user.items.show',['item'=>$product->id,'option'=>'gray']) }}" @endif class="@if($product->color === 'gray')h-8 w-8 rounded-full border gray ring-2 ring-gray-800 @else h-8 w-8 gray rounded-full border  ring-2 ring-transparent ring-offset-1 transition duration-100 hover:ring-gray-400 @endif"></a>
-                                                        <a nama="color" value="blue" @if($product->color === 'blue') href="javascript:void(0)" @else href="{{ route('user.items.show',['item'=>$product->id,'option'=>'blue']) }}" @endif class="@if($product->color === 'blue')h-8 w-8 rounded-full border blue ring-2 ring-gray-800 @else h-8 w-8 blue rounded-full border ring-2 ring-transparent ring-offset-1 transition duration-100 hover:ring-gray-400 @endif"></a>
-                                                        <a nama="color" value="gold" @if($product->color === 'gold') href="javascript:void(0)" @else href="{{ route('user.items.show',['item'=>$product->id,'option'=>'gold']) }}" @endif class="@if($product->color === 'gold')h-8 w-8 rounded-full border gold ring-2 ring-gray-800 @else h-8 w-8 gold rounded-full border ring-2 ring-transparent ring-offset-1 transition duration-100 hover:ring-gray-400 @endif"></a>
-                                                        <a nama="color" value="green" @if($product->color === 'green') href="javascript:void(0)" @else href="{{ route('user.items.show',['item'=>$product->id,'option'=>'green']) }}" @endif class="@if($product->color === 'green')h-8 w-8 rounded-full border green ring-2 ring-gray-800 @else h-8 w-8 green rounded-full border ring-2 ring-transparent ring-offset-1 transition duration-100 hover:ring-gray-400 @endif"></a>
-                                                        <a nama="color" value="silver" @if($product->color === 'silver') href="javascript:void(0)" @else href="{{ route('user.items.show',['item'=>$product->id,'option'=>'silver']) }}" @endif class="@if($product->color === 'silver')h-8 w-8 rounded-full border silver ring-2 ring-gray-800 @else h-8 w-8 silver rounded-full border ring-2 ring-transparent ring-offset-1 transition duration-100 hover:ring-gray-400 @endif"></a>
+                                                        <a nama="color" value="gray" @if($product->color === 'gray') href="javascript:void(0)" @else href="{{ route('items.show',['item'=>$product->id,'option'=>'gray']) }}" @endif class="@if($product->color === 'gray')h-8 w-8 rounded-full border gray ring-2 ring-gray-800 @else h-8 w-8 gray rounded-full border  ring-2 ring-transparent ring-offset-1 transition duration-100 hover:ring-gray-400 @endif"></a>
+                                                        <a nama="color" value="gold" @if($product->color === 'gold') href="javascript:void(0)" @else href="{{ route('items.show',['item'=>$product->id,'option'=>'gold']) }}" @endif class="@if($product->color === 'gold')h-8 w-8 rounded-full border gold ring-2 ring-gray-800 @else h-8 w-8 gold rounded-full border ring-2 ring-transparent ring-offset-1 transition duration-100 hover:ring-gray-400 @endif"></a>    
                                                     </div>
                                                 </div>
                                                 <!-- color - end -->
@@ -88,9 +87,8 @@
                                                 <div class="mb-8 md:mb-10">
                                                     <span class="mb-3 inline-block text-sm font-semibold text-gray-500 md:text-base">容量(GB)</span>
                                                     <div class="flex justify-around gap-3" id="capacity">
-                                                        <a nama='64GB'  @if($product->capacity === 64) href="javascript:void(0)" @else href="{{ route('user.items.show',['item'=>$product->id,'option'=>64]) }}" @endif @if($product->capacity === 64) class="bg-gray-200 flex h-12 w-full items-center justify-center rounded-md border text-center text-sm font-semibold text-gray-800 transition duration-100" @else class="flex h-12 w-full items-center justify-center rounded-md border bg-white text-center text-sm font-semibold text-gray-800 transition duration-100 hover:bg-gray-100 active:bg-gray-200" @endif>64GB</a>
-                                                        <a nama='128GB' @if($product->capacity === 128) href="javascript:void(0)" @else href="{{ route('user.items.show',['item'=>$product->id,'option'=>128]) }}" @endif @if($product->capacity === 128) class="bg-gray-200 flex h-12 w-full items-center justify-center rounded-md border text-center text-sm font-semibold text-gray-800 transition duration-100" @else class="flex h-12 w-full items-center justify-center rounded-md border bg-white text-center text-sm font-semibold text-gray-800 transition duration-100 hover:bg-gray-100 active:bg-gray-200" @endif>128GB</a>
-                                                        <a nama='256GB' @if($product->capacity === 256) href="javascript:void(0)" @else href="{{ route('user.items.show',['item'=>$product->id,'option'=>256]) }}" @endif @if($product->capacity === 256) class="bg-gray-200 flex h-12 w-full items-center justify-center rounded-md border text-center text-sm font-semibold text-gray-800 transition duration-100" @else class="flex h-12 w-full items-center justify-center rounded-md border bg-white text-center text-sm font-semibold text-gray-800 transition duration-100 hover:bg-gray-100 active:bg-gray-200" @endif>256GB</a>
+                                                        <a nama='256GB' @if($product->capacity === 256) href="javascript:void(0)" @else href="{{ route('items.show',['item'=>$product->id,'option'=>256]) }}" @endif @if($product->capacity === 256) class="bg-gray-200 flex h-12 w-full items-center justify-center rounded-md border text-center text-sm font-semibold text-gray-800 transition duration-100" @else class="flex h-12 w-full items-center justify-center rounded-md border bg-white text-center text-sm font-semibold text-gray-800 transition duration-100 hover:bg-gray-100 active:bg-gray-200" @endif>256GB</a>
+                                                        <a nama='512GB' @if($product->capacity === 512) href="javascript:void(0)" @else href="{{ route('items.show',['item'=>$product->id,'option'=>512]) }}" @endif @if($product->capacity === 512) class="bg-gray-200 flex h-12 w-full items-center justify-center rounded-md border text-center text-sm font-semibold text-gray-800 transition duration-100" @else class="flex h-12 w-full items-center justify-center rounded-md border bg-white text-center text-sm font-semibold text-gray-800 transition duration-100 hover:bg-gray-100 active:bg-gray-200" @endif>512GB</a>
                                                     </div>
                                                 </div>
                                                 <!-- size - end -->
@@ -116,7 +114,7 @@
                                                 </div>
                                                 <div class="pt-4 flex justify-end">
                                                     <button class="flex justify-center ml-auto shadow-lg px-2 py-1 w-1/2 bg-blue-400 text-lg text-white font-semibold rounded  hover:bg-blue-500 hover:shadow-sm hover:translate-y-0.5 transform transition">カートに入れる</button>
-                                                    <input type="hidden" name="product_id" value="{{ $product->id}}">                                                
+                                                    <input type="hidden" name="product_id" value="{{ $product->id}}">                                           
                                                 </div>
                                                 <!-- buttons - end -->
                                             </div>

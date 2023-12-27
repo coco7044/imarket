@@ -68,7 +68,7 @@
                                                 <!-- name - end -->
 
                                                 @if($count > 1)
-                                                    <a href="" class="tags">もっと見る</a>
+                                                    <a href="{{ route('user.items.more',['item'=>$product->id,'color'=>$product->color,'capacity'=>$product->capacity]) }}" class="tags">もっと見る</a>
                                                 @endif
 
                                                 <!-- color - start -->
@@ -87,6 +87,7 @@
                                                     <div class="flex justify-around gap-3" id="capacity">
                                                         <a nama='256GB' @if($product->capacity === 256) href="javascript:void(0)" @else href="{{ route('user.items.show',['item'=>$product->id,'option'=>256]) }}" @endif @if($product->capacity === 256) class="bg-gray-200 flex h-12 w-full items-center justify-center rounded-md border text-center text-sm font-semibold text-gray-800 transition duration-100" @else class="flex h-12 w-full items-center justify-center rounded-md border bg-white text-center text-sm font-semibold text-gray-800 transition duration-100 hover:bg-gray-100 active:bg-gray-200" @endif>256GB</a>
                                                         <a nama='512GB' @if($product->capacity === 512) href="javascript:void(0)" @else href="{{ route('user.items.show',['item'=>$product->id,'option'=>512]) }}" @endif @if($product->capacity === 512) class="bg-gray-200 flex h-12 w-full items-center justify-center rounded-md border text-center text-sm font-semibold text-gray-800 transition duration-100" @else class="flex h-12 w-full items-center justify-center rounded-md border bg-white text-center text-sm font-semibold text-gray-800 transition duration-100 hover:bg-gray-100 active:bg-gray-200" @endif>512GB</a>
+                                                        <a nama='1000GB' @if($product->capacity === 1000) href="javascript:void(0)" @else href="{{ route('user.items.show',['item'=>$product->id,'option'=>1000]) }}" @endif @if($product->capacity === 1000) class="bg-gray-200 flex h-12 w-full items-center justify-center rounded-md border text-center text-sm font-semibold text-gray-800 transition duration-100" @else class="flex h-12 w-full items-center justify-center rounded-md border bg-white text-center text-sm font-semibold text-gray-800 transition duration-100 hover:bg-gray-100 active:bg-gray-200" @endif>1000GB</a>
                                                     </div>
                                                 </div>
                                                 <!-- size - end -->

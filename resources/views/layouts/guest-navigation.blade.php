@@ -1,0 +1,24 @@
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+    <!-- Primary Navigation Menu -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex">
+                <!-- Logo -->
+                <div class="shrink-0 flex items-center w-40">
+                    <a href="/">
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    </a>
+                </div>
+            </div>
+            <div class="flex pt-6 h-8">
+                    <a class="mr-8 tags" href="{{ route('login') }}">
+                        ログイン
+                    </a>
+                    <a class="tags" href="{{ route('register') }}">
+                        会員登録
+                    </a>
+            </div>
+        </div>
+    </div>
+
+</nav>

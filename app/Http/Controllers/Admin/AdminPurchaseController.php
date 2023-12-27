@@ -28,7 +28,7 @@ class AdminPurchaseController extends Controller
 
         $purchases = $purchases->where('user_profile_infos.kana','like','%'.$request->keyword.'%')
         ->orWhere('purchases.id','like','%'.$request->keyword.'%')
-        ->orWhere('user_profile_infos.tel','like','%'.$request->keyword.'%')->paginate(10);
+        ->orWhere('user_profile_infos.tel','like','%'.$request->keyword.'%')->paginate(50);
 
         // dd($purchases);
 
