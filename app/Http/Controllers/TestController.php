@@ -53,7 +53,7 @@ class TestController extends Controller
 
         // dd($tUser, $User);
         
-        // return view('admin.test.index');
+        return view('admin.test.index');
         
     }
 }

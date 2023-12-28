@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.index')">
                         商品管理
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.userlist.index')" :active="request()->routeIs('admin.userlist.index')">
+                        会員リスト
+                    </x-nav-link>
                     <x-nav-link :href="route('admin.purchase.index')" :active="request()->routeIs('admin.purchase.index')">
                         購入者履歴
                     </x-nav-link>
@@ -87,6 +90,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.index')">
                 商品管理
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.userlist.index')" :active="request()->routeIs('admin.userlist.index')">
+                会員リスト
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.purchase.index')" :active="request()->routeIs('admin.purchase.index')">
                 購入者履歴

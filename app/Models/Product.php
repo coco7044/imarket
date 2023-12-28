@@ -107,6 +107,7 @@ class Product extends Model
     public function scopeAvailableItems($query)
     {
         $stocks = $this->getStocks();
+        
         return 
         $query->joinSub($stocks, 'stock', function($join){
             $join->on('products.id', '=', 'stock.product_id');
