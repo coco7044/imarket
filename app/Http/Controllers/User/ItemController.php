@@ -138,6 +138,7 @@ class ItemController extends Controller
         $products = Product::availableItems()
         ->where('color','=',$color)
         ->where('capacity','=',$capacity)
+        ->where('secondary_category_id','=',$product->secondary_category_id)
         ->orderBy('products.updated_at', 'desc')
         ->paginate(20);
         return view('user.more',compact('products'));

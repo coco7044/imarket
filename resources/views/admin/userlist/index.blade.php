@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        購入者履歴
+        会員リスト
         </h2>
     </x-slot>
 
@@ -16,10 +16,10 @@
                                 <div class="inline-block min-w-full">
 
                                     <div class="flex flex-col text-center w-full mb-10">
-                                        <h1 class="sm:text-2xl text-3xl font-medium title-font mb-2 text-gray-900">購入者履歴</h1>
+                                        <h1 class="sm:text-2xl text-3xl font-medium title-font mb-2 text-gray-900">会員リスト</h1>
                                     </div>
 
-                                    <form method="get" action="{{ route('admin.purchase.index')}}">
+                                    <form method="get" action="{{ route('admin.userlist.index')}}">
                                         <div class="pb-8 flex justify-center">
                                             <div class="md:w-1/3 relative">
                                                 <input type="text" name="keyword" placeholder="キーワードを入力" class="w-full rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"/>
@@ -39,29 +39,29 @@
                                             <thead class="bg-neutral-50">
                                                 <tr class="text-neutral-500">
                                                     <th class="px-5 py-3 text-xs font-medium text-left uppercase">ID</th>
-                                                    <th class="px-5 py-3 text-xs font-medium text-left uppercase">購入者名</th>
+                                                    <th class="px-5 py-3 text-xs font-medium text-left uppercase">名前</th>
+                                                    <th class="px-5 py-3 text-xs font-medium text-left uppercase">フリガナ</th>
                                                     <th class="px-5 py-3 text-xs font-medium text-left uppercase">電話番号</th>
-                                                    <th class="px-5 py-3 text-xs font-medium text-left uppercase">金額</th>
-                                                    <th class="px-5 py-3 text-xs font-medium text-center uppercase">購入日</th>
+                                                    <th class="px-5 py-3 text-xs font-medium text-center uppercase">住所</th>
                                                     <th class="px-5 py-3 text-xs font-medium text-left uppercase">ステータス</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="divide-y divide-neutral-200">
-                                                @foreach( $purchases as $purchase)
+                                                @foreach( $users as $user)
                                                     <tr class="text-neutral-800">
                                                         <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">
-                                                            <a class="tags" href="{{ route('admin.purchase.show',['purchase'=>$purchase->id]) }}">
-                                                                {{ $purchase->id }}
+                                                            <a class="tags" href="{{ route('admin.userlist.show',['userlist'=>$user->id]) }}">
+                                                                {{ $user->id }}
                                                             </a>
                                                         </td>
-                                                        <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $purchase->kana }}</td>
-                                                        <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $purchase->tel }}</td>
-                                                        <td class="px-5 py-4 text-sm whitespace-nowrap">{{ number_format($purchase->total) }}円(税込)</td>
-                                                        <td class="px-5 py-4 text-sm text-center whitespace-nowrap">{{ $purchase->created_at }}</td>
-                                                        @if($purchase->status === 0)
-                                                            <td class="px-4 py-3">購入済み</td>
+                                                        <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $user->name }}</td>
+                                                        <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $user->kana }}</td>
+                                                        <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $user->tel }}</td>
+                                                        <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $user->address }}</td>
+                                                        @if($user->deleted_at !== null)
+                                                            <td class="px-4 py-3">退会済み</td>
                                                         @else
-                                                            <td class="px-4 py-3">キャンセル済み</td>
+                                                            <td class="px-4 py-3">入会中</td>
                                                         @endif
                                                     </tr>
                                                 @endforeach
@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="pb-8">
-                        {{ $purchases->links() }}
+                        {{ $users->links() }}
                     </div>
 
                 </div>
