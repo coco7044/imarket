@@ -60,7 +60,7 @@
     background-color: rgb(57, 76, 56);
 }
 .gold{
-    background-color: rgb(245, 231, 204);
+    background-color: rgb(255, 230, 180);
 }
 .silver{
     background-color: #D8D8D8;
@@ -146,4 +146,11 @@ transition-duration: 0.5s;
 
 .end{
     align-items: flex-end;
+}
+
+.modalindex1{
+    z-index:30;
+}
+.modalindex2{
+    z-index:50;
 }

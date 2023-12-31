@@ -34,10 +34,6 @@ Route::get('/', function () {
     return view('admin.auth.login');
 });
 
-Route::middleware('auth:admin')->group(function () {
-    Route::get('/test', [TestController::class, 'test'])->name('profile.test');
-});
-
 Route::resource('userlist',UserListController::class)->middleware('auth:admin');
 
 Route::resource('images',ImageController::class)->middleware('auth:admin')->except('show');

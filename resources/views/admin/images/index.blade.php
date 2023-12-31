@@ -13,10 +13,12 @@
                 <div class="flex justify-end mb-4"> 
                   <button onclick="location.href='{{ route('admin.images.create')}}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">画像の新規登録</button>                        
                 </div> 
-                <div class="flex flex-wrap">
-                @foreach ($images as $image )
-                    <div class="w-1/4 p-2 md:p-4">
-                      <a href="{{ route('admin.images.edit', ['image' => $image->id ])}}">  
+
+                <div class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
+                    @foreach($images as $image )
+                    <!-- article - start -->
+                    <div class="box flex flex-col overflow-hidden rounded-lg border bg-white">
+                    <a href="{{ route('admin.images.edit', ['image' => $image->id ])}}">  
                         <div class="box border rounded-md p-2 md:p-4">
                           <span class="flex justify-center">
                             <x-thumbnail :filename="$image->filename" type="products" />
@@ -25,8 +27,10 @@
                         </div>
                       </a>
                     </div>
-                  @endforeach
+                    <!-- article - end -->
+                    @endforeach
                 </div>
+
                 {{ $images->links() }}
               </div>
           </div>
