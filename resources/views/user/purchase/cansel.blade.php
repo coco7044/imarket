@@ -30,7 +30,7 @@
                         </div>
                         @endforeach
                         <div class="flex pb-8 flex-row-reverse">
-                            <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+                            <div class="modal modalindex2 micromodal-slide" id="modal-1" aria-hidden="true">
                                 <div class="modal__overlay" tabindex="-1" data-micromodal-close>
                                     <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
                                         <header class="modal__header">
@@ -53,7 +53,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a data-micromodal-trigger="modal-1" href='javascript:;' class=" inline-block rounded bg-red-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none active:bg-red-500">キャンセルする</a>
+                            <a data-micromodal-trigger="modal-1" href='javascript:;' class="modalindex1 inline-block rounded bg-red-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none active:bg-red-500">キャンセルする</a>
                         </div>
                             {{ $histories->links() }}
                 </div>

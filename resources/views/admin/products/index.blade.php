@@ -15,25 +15,25 @@
                     </div>
 
                     <div class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
-                    @foreach($products as $product)
-                    <!-- article - start -->
-                    <div class="box flex flex-col overflow-hidden rounded-lg border bg-white">
-                        <a href="{{ route('admin.products.edit', ['product' => $product->id])}}">  
-                            <span class="flex justify-center">
-                                <x-thumbnail filename="{{$product->imageFirst->filename ?? ''}}" type="products" />
-                            </span>
-                            <div class="flex flex-1 flex-col p-4 sm:p-6">
-                                <div class="sm:h-20">
-                                    <h2 class="mb-8 text-gray-500">{{ $product->name }}</h2>
+                        @foreach($products as $product)
+                        <!-- article - start -->
+                        <div class="box flex flex-col overflow-hidden rounded-lg border bg-white">
+                            <a href="{{ route('admin.products.edit', ['product' => $product->id])}}">  
+                                <span class="flex justify-center">
+                                    <x-thumbnail filename="{{$product->imageFirst->filename ?? ''}}" type="products" />
+                                </span>
+                                <div class="flex flex-1 flex-col p-4 sm:p-6">
+                                    <div class="sm:h-20">
+                                        <h2 class="mb-8 text-gray-500">{{ $product->name }}</h2>
+                                    </div>
+                                    <div>
+                                        <p class="text-xl mt-1">￥{{ number_format($product->price) }}<span class="text-xl text-gray-700">円(税込)</span></p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="text-xl mt-1">￥{{ number_format($product->price) }}<span class="text-xl text-gray-700">円(税込)</span></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- article - end -->
-                    @endforeach
+                            </a>
+                        </div>
+                        <!-- article - end -->
+                        @endforeach
                     </div>
 
                 </div>
